@@ -106,12 +106,12 @@ jobs:
 To install a component from this registry:
 
 ```bash
-npx shadcn@latest add https://lucastobrazil.github.io/shad-rego-jan-26/{component}
+npx shadcn@latest add https://lucastobrazil.github.io/shad-rego-jan-26/r/{component}.json
 ```
 
 Example:
 ```bash
-npx shadcn@latest add https://lucastobrazil.github.io/shad-rego-jan-26/button
+npx shadcn@latest add https://lucastobrazil.github.io/shad-rego-jan-26/r/button.json
 ```
 
 ## Next.js Configuration

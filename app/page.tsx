@@ -326,7 +326,7 @@ function ComponentCard({
   componentName: string
   children: React.ReactNode
 }) {
-  const installCommand = `npx shadcn@latest add ${REGISTRY_URL}/${componentName}`
+  const installCommand = `npx shadcn@latest add ${REGISTRY_URL}/r/${componentName}.json`
 
   return (
     <Card id={id} className="scroll-mt-20">
