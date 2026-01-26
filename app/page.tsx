@@ -111,24 +111,38 @@ const components = [
   "Tooltip",
 ]
 
+const REGISTRY_URL = "https://lucastobrazil.github.io/shad-rego-jan-26"
+
 function ComponentCard({
   id,
   title,
   description,
+  componentName,
   children,
 }: {
   id: string
   title: string
   description: string
+  componentName: string
   children: React.ReactNode
 }) {
+  const installCommand = `npx shadcn@latest add ${REGISTRY_URL}/${componentName}`
+
   return (
     <Card id={id} className="scroll-mt-20">
       <CardHeader>
         <CardTitle>{title}</CardTitle>
         <CardDescription>{description}</CardDescription>
       </CardHeader>
-      <CardContent>{children}</CardContent>
+      <CardContent className="space-y-4">
+        {children}
+        <div className="mt-4 pt-4 border-t">
+          <p className="text-xs text-muted-foreground mb-2">Install</p>
+          <code className="block bg-muted px-3 py-2 rounded-md text-xs font-mono overflow-x-auto">
+            {installCommand}
+          </code>
+        </div>
+      </CardContent>
     </Card>
   )
 }
@@ -184,6 +198,7 @@ export default function Home() {
               id="avatar"
               title="Avatar"
               description="An image element with a fallback for representing the user."
+              componentName="avatar"
             >
               <div className="space-y-4">
                 <div className="flex items-end gap-4">
@@ -220,6 +235,7 @@ export default function Home() {
               id="badge"
               title="Badge"
               description="Displays a badge or a component that looks like a badge."
+              componentName="badge"
             >
               <div className="flex flex-wrap gap-2">
                 <Badge>Default</Badge>
@@ -234,6 +250,7 @@ export default function Home() {
               id="breadcrumb"
               title="Breadcrumb"
               description="Displays the path to the current resource using a hierarchy of links."
+              componentName="breadcrumb"
             >
               <Breadcrumb>
                 <BreadcrumbList>
@@ -257,6 +274,7 @@ export default function Home() {
               id="button"
               title="Button"
               description="Displays a button or a component that looks like a button."
+              componentName="button"
             >
               <div className="flex flex-wrap gap-2">
                 <Button>Default</Button>
@@ -276,6 +294,7 @@ export default function Home() {
               id="calendar"
               title="Calendar"
               description="A date field component that allows users to enter and edit date."
+              componentName="calendar"
             >
               <Calendar
                 mode="single"
@@ -290,6 +309,7 @@ export default function Home() {
               id="callout"
               title="Callout"
               description="Displays important messages with severity variants."
+              componentName="callout"
             >
               <div className="space-y-4">
                 <Callout>
@@ -343,6 +363,7 @@ export default function Home() {
               id="card"
               title="Card"
               description="Displays a card with header, content, and footer."
+              componentName="card"
             >
               <Card className="w-[350px]">
                 <CardHeader>
@@ -365,6 +386,7 @@ export default function Home() {
               id="checkbox"
               title="Checkbox"
               description="A control that allows the user to toggle between checked and not checked."
+              componentName="checkbox"
             >
               <div className="space-y-4">
                 <div className="flex items-center space-x-2">
@@ -383,6 +405,7 @@ export default function Home() {
               id="dialog"
               title="Dialog"
               description="A window overlaid on either the primary window or another dialog window."
+              componentName="dialog"
             >
               <Dialog>
                 <DialogTrigger asChild>
@@ -408,6 +431,7 @@ export default function Home() {
               id="dropdown-menu"
               title="Dropdown Menu"
               description="Displays a menu to the user triggered by a button."
+              componentName="dropdown-menu"
             >
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
@@ -430,6 +454,7 @@ export default function Home() {
               id="input"
               title="Input"
               description="Displays a form input field or a component that looks like an input field."
+              componentName="input"
             >
               <div className="space-y-4 max-w-sm">
                 <Input placeholder="Email" type="email" />
@@ -443,6 +468,7 @@ export default function Home() {
               id="label"
               title="Label"
               description="Renders an accessible label associated with controls."
+              componentName="label"
             >
               <div className="space-y-4 max-w-sm">
                 <div className="space-y-2">
@@ -457,6 +483,7 @@ export default function Home() {
               id="popover"
               title="Popover"
               description="Displays rich content in a portal, triggered by a button."
+              componentName="popover"
             >
               <Popover>
                 <PopoverTrigger asChild>
@@ -478,6 +505,7 @@ export default function Home() {
               id="progress"
               title="Progress"
               description="Displays an indicator showing the completion progress of a task."
+              componentName="progress"
             >
               <div className="space-y-4 max-w-md">
                 <Progress value={progress} />
@@ -491,6 +519,7 @@ export default function Home() {
               id="radio-group"
               title="Radio Group"
               description="A set of checkable buttons where no more than one can be checked at a time."
+              componentName="radio-group"
             >
               <RadioGroup defaultValue="option-one">
                 <div className="flex items-center space-x-2">
@@ -513,6 +542,7 @@ export default function Home() {
               id="select"
               title="Select"
               description="Displays a list of options for the user to pick from."
+              componentName="select"
             >
               <Select>
                 <SelectTrigger className="w-[180px]">
@@ -532,6 +562,7 @@ export default function Home() {
               id="separator"
               title="Separator"
               description="Visually or semantically separates content."
+              componentName="separator"
             >
               <div className="space-y-4">
                 <div>
@@ -549,6 +580,7 @@ export default function Home() {
               id="skeleton"
               title="Skeleton"
               description="Use to show a placeholder while content is loading."
+              componentName="skeleton"
             >
               <div className="flex items-center space-x-4">
                 <Skeleton className="h-12 w-12 rounded-full" />
@@ -564,6 +596,7 @@ export default function Home() {
               id="sonner"
               title="Toast (Sonner)"
               description="An opinionated toast component for React."
+              componentName="sonner"
             >
               <div className="flex gap-2">
                 <Button
@@ -597,6 +630,7 @@ export default function Home() {
               id="spinner"
               title="Spinner"
               description="A loading spinner with size and variant options."
+              componentName="spinner"
             >
               <div className="space-y-4">
                 <div className="flex items-end gap-4">
@@ -620,6 +654,7 @@ export default function Home() {
               id="status-badge"
               title="Status Badge"
               description="A rectangular badge component for displaying status indicators."
+              componentName="status-badge"
             >
               <div className="flex flex-wrap gap-2">
                 <StatusBadge>Default</StatusBadge>
@@ -632,6 +667,7 @@ export default function Home() {
               id="switch"
               title="Switch"
               description="A control that allows the user to toggle between on and off."
+              componentName="switch"
             >
               <div className="space-y-4">
                 <div className="flex items-center space-x-2">
@@ -658,6 +694,7 @@ export default function Home() {
               id="table"
               title="Table"
               description="A responsive table component."
+              componentName="table"
             >
               <Table>
                 <TableHeader>
@@ -696,6 +733,7 @@ export default function Home() {
               id="tabs"
               title="Tabs"
               description="A set of layered sections of content displayed one at a time."
+              componentName="tabs"
             >
               <Tabs defaultValue="account" className="w-[400px]">
                 <TabsList>
@@ -726,6 +764,7 @@ export default function Home() {
               id="textarea"
               title="Textarea"
               description="Displays a form textarea or a component that looks like a textarea."
+              componentName="textarea"
             >
               <div className="max-w-sm">
                 <Textarea placeholder="Type your message here." />
@@ -737,6 +776,7 @@ export default function Home() {
               id="tooltip"
               title="Tooltip"
               description="A popup that displays information related to an element."
+              componentName="tooltip"
             >
               <Tooltip>
                 <TooltipTrigger asChild>
