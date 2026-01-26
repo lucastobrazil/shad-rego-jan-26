@@ -1,0 +1,319 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "my-registry",
+  "homepage": "https://lucastobrazil.github.io/shad-rego-jan-26",
+  "items": [
+    {
+      "name": "avatar",
+      "type": "registry:ui",
+      "title": "Avatar",
+      "description": "An image element with a fallback for representing the user.",
+      "dependencies": ["@radix-ui/react-avatar"],
+      "registryDependencies": [],
+      "files": [
+        { "path": "registry/vitality/ui/avatar.tsx", "type": "registry:ui" }
+      ]
+    },
+    {
+      "name": "badge",
+      "type": "registry:ui",
+      "title": "Badge",
+      "description": "Displays a badge or a component that looks like a badge.",
+      "dependencies": ["class-variance-authority"],
+      "registryDependencies": [],
+      "files": [
+        { "path": "registry/vitality/ui/badge.tsx", "type": "registry:ui" }
+      ]
+    },
+    {
+      "name": "breadcrumb",
+      "type": "registry:ui",
+      "title": "Breadcrumb",
+      "description": "Displays the path to the current resource using a hierarchy of links.",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        { "path": "registry/vitality/ui/breadcrumb.tsx", "type": "registry:ui" }
+      ]
+    },
+    {
+      "name": "button",
+      "type": "registry:ui",
+      "title": "Button",
+      "description": "Displays a button or a component that looks like a button.",
+      "dependencies": ["@radix-ui/react-slot", "class-variance-authority"],
+      "registryDependencies": [],
+      "files": [
+        { "path": "registry/vitality/ui/button.tsx", "type": "registry:ui" }
+      ]
+    },
+    {
+      "name": "calendar",
+      "type": "registry:ui",
+      "title": "Calendar",
+      "description": "A date field component that allows users to enter and edit date.",
+      "dependencies": ["react-day-picker"],
+      "registryDependencies": ["button"],
+      "files": [
+        { "path": "registry/vitality/ui/calendar.tsx", "type": "registry:ui" }
+      ]
+    },
+    {
+      "name": "callout",
+      "type": "registry:ui",
+      "title": "Callout",
+      "description": "Displays important messages with severity variants.",
+      "dependencies": ["class-variance-authority"],
+      "registryDependencies": [],
+      "files": [
+        { "path": "registry/vitality/ui/callout.tsx", "type": "registry:ui" }
+      ]
+    },
+    {
+      "name": "card",
+      "type": "registry:ui",
+      "title": "Card",
+      "description": "Displays a card with header, content, and footer.",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        { "path": "registry/vitality/ui/card.tsx", "type": "registry:ui" }
+      ]
+    },
+    {
+      "name": "checkbox",
+      "type": "registry:ui",
+      "title": "Checkbox",
+      "description": "A control that allows the user to toggle between checked and not checked.",
+      "dependencies": ["@radix-ui/react-checkbox"],
+      "registryDependencies": [],
+      "files": [
+        { "path": "registry/vitality/ui/checkbox.tsx", "type": "registry:ui" }
+      ]
+    },
+    {
+      "name": "dialog",
+      "type": "registry:ui",
+      "title": "Dialog",
+      "description": "A window overlaid on either the primary window or another dialog window.",
+      "dependencies": ["@radix-ui/react-dialog"],
+      "registryDependencies": [],
+      "files": [
+        { "path": "registry/vitality/ui/dialog.tsx", "type": "registry:ui" }
+      ]
+    },
+    {
+      "name": "dropdown-menu",
+      "type": "registry:ui",
+      "title": "Dropdown Menu",
+      "description": "Displays a menu to the user triggered by a button.",
+      "dependencies": ["@radix-ui/react-dropdown-menu"],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/vitality/ui/dropdown-menu.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "form",
+      "type": "registry:ui",
+      "title": "Form",
+      "description": "Building forms with React Hook Form and Zod.",
+      "dependencies": [
+        "@radix-ui/react-label",
+        "@radix-ui/react-slot",
+        "react-hook-form",
+        "@hookform/resolvers",
+        "zod"
+      ],
+      "registryDependencies": ["label"],
+      "files": [
+        { "path": "registry/vitality/ui/form.tsx", "type": "registry:ui" }
+      ]
+    },
+    {
+      "name": "input",
+      "type": "registry:ui",
+      "title": "Input",
+      "description": "Displays a form input field or a component that looks like an input field.",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        { "path": "registry/vitality/ui/input.tsx", "type": "registry:ui" }
+      ]
+    },
+    {
+      "name": "label",
+      "type": "registry:ui",
+      "title": "Label",
+      "description": "Renders an accessible label associated with controls.",
+      "dependencies": ["@radix-ui/react-label", "class-variance-authority"],
+      "registryDependencies": [],
+      "files": [
+        { "path": "registry/vitality/ui/label.tsx", "type": "registry:ui" }
+      ]
+    },
+    {
+      "name": "popover",
+      "type": "registry:ui",
+      "title": "Popover",
+      "description": "Displays rich content in a portal, triggered by a button.",
+      "dependencies": ["@radix-ui/react-popover"],
+      "registryDependencies": [],
+      "files": [
+        { "path": "registry/vitality/ui/popover.tsx", "type": "registry:ui" }
+      ]
+    },
+    {
+      "name": "progress",
+      "type": "registry:ui",
+      "title": "Progress",
+      "description": "Displays an indicator showing the completion progress of a task.",
+      "dependencies": ["@radix-ui/react-progress"],
+      "registryDependencies": [],
+      "files": [
+        { "path": "registry/vitality/ui/progress.tsx", "type": "registry:ui" }
+      ]
+    },
+    {
+      "name": "radio-group",
+      "type": "registry:ui",
+      "title": "Radio Group",
+      "description": "A set of checkable buttons where no more than one can be checked at a time.",
+      "dependencies": ["@radix-ui/react-radio-group"],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/vitality/ui/radio-group.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "select",
+      "type": "registry:ui",
+      "title": "Select",
+      "description": "Displays a list of options for the user to pick from.",
+      "dependencies": ["@radix-ui/react-select"],
+      "registryDependencies": [],
+      "files": [
+        { "path": "registry/vitality/ui/select.tsx", "type": "registry:ui" }
+      ]
+    },
+    {
+      "name": "separator",
+      "type": "registry:ui",
+      "title": "Separator",
+      "description": "Visually or semantically separates content.",
+      "dependencies": ["@radix-ui/react-separator"],
+      "registryDependencies": [],
+      "files": [
+        { "path": "registry/vitality/ui/separator.tsx", "type": "registry:ui" }
+      ]
+    },
+    {
+      "name": "skeleton",
+      "type": "registry:ui",
+      "title": "Skeleton",
+      "description": "Use to show a placeholder while content is loading.",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        { "path": "registry/vitality/ui/skeleton.tsx", "type": "registry:ui" }
+      ]
+    },
+    {
+      "name": "sonner",
+      "type": "registry:ui",
+      "title": "Sonner",
+      "description": "An opinionated toast component for React.",
+      "dependencies": ["sonner", "next-themes"],
+      "registryDependencies": [],
+      "files": [
+        { "path": "registry/vitality/ui/sonner.tsx", "type": "registry:ui" }
+      ]
+    },
+    {
+      "name": "spinner",
+      "type": "registry:ui",
+      "title": "Spinner",
+      "description": "A loading spinner with size and variant options.",
+      "dependencies": ["class-variance-authority", "lucide-react"],
+      "registryDependencies": [],
+      "files": [
+        { "path": "registry/vitality/ui/spinner.tsx", "type": "registry:ui" }
+      ]
+    },
+    {
+      "name": "status-badge",
+      "type": "registry:ui",
+      "title": "Status Badge",
+      "description": "A versatile badge component for displaying status indicators with various states and sizes.",
+      "dependencies": ["class-variance-authority"],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/vitality/ui/status-badge.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "switch",
+      "type": "registry:ui",
+      "title": "Switch",
+      "description": "A control that allows the user to toggle between on and off.",
+      "dependencies": ["@radix-ui/react-switch"],
+      "registryDependencies": [],
+      "files": [
+        { "path": "registry/vitality/ui/switch.tsx", "type": "registry:ui" }
+      ]
+    },
+    {
+      "name": "table",
+      "type": "registry:ui",
+      "title": "Table",
+      "description": "A responsive table component.",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        { "path": "registry/vitality/ui/table.tsx", "type": "registry:ui" }
+      ]
+    },
+    {
+      "name": "tabs",
+      "type": "registry:ui",
+      "title": "Tabs",
+      "description": "A set of layered sections of content displayed one at a time.",
+      "dependencies": ["@radix-ui/react-tabs"],
+      "registryDependencies": [],
+      "files": [
+        { "path": "registry/vitality/ui/tabs.tsx", "type": "registry:ui" }
+      ]
+    },
+    {
+      "name": "textarea",
+      "type": "registry:ui",
+      "title": "Textarea",
+      "description": "Displays a form textarea or a component that looks like a textarea.",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        { "path": "registry/vitality/ui/textarea.tsx", "type": "registry:ui" }
+      ]
+    },
+    {
+      "name": "tooltip",
+      "type": "registry:ui",
+      "title": "Tooltip",
+      "description": "A popup that displays information related to an element.",
+      "dependencies": ["@radix-ui/react-tooltip"],
+      "registryDependencies": [],
+      "files": [
+        { "path": "registry/vitality/ui/tooltip.tsx", "type": "registry:ui" }
+      ]
+    }
+  ]
+}

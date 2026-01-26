@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "callout",
+  "type": "registry:ui",
+  "title": "Callout",
+  "description": "Displays important messages with severity variants.",
+  "dependencies": [
+    "class-variance-authority"
+  ],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/vitality/ui/callout.tsx",
+      "content": "import * as React from \"react\"\nimport { cva, type VariantProps } from \"class-variance-authority\"\n\nimport { cn } from \"@/lib/utils\"\n\nconst calloutVariants = cva(\n  \"relative w-full rounded-lg [&>svg]:absolute [&>svg]:left-4 [&>svg]:top-4 [&>svg~*]:pl-7 [&>svg]:pointer-events-none [&>svg:not([class*='size-'])]:size-4\",\n  {\n    variants: {\n      variant: {\n        muted: \"text-foreground bg-muted [&>svg]:text-foreground\",\n        destructive:\n          \"text-destructive bg-destructive/10 [&>svg]:text-destructive\",\n        warning: \"text-warning bg-warning/10 [&>svg]:text-warning\",\n        success: \"text-success bg-success/10 [&>svg]:text-success\",\n        info: \"text-info bg-info/10 [&>svg]:text-info\",\n        brand: \"text-brand bg-brand/10 [&>svg]:text-brand\",\n      },\n      size: {\n        default: \"px-4 py-3 text-sm grid has-[>svg]:gap-x-3\",\n        compact:\n          \"px-0 py-0 text-xs bg-transparent! border-transparent! inline\",\n        blockCompact:\n          \"px-3 py-2 text-xs flex! gap-x-1!\",\n      },\n    },\n    defaultVariants: {\n      variant: \"muted\",\n      size: \"default\",\n    },\n  }\n)\n\nfunction Callout({\n  className,\n  variant,\n  size,\n  ...props\n}: React.ComponentProps<\"div\"> & VariantProps<typeof calloutVariants>) {\n  return (\n    <div\n      data-slot=\"callout\"\n      data-variant={variant}\n      data-size={size}\n      role=\"alert\"\n      className={cn(calloutVariants({ variant, size }), className)}\n      {...props}\n    />\n  )\n}\n\nfunction CalloutTitle({\n  className,\n  ...props\n}: React.ComponentProps<\"h5\">) {\n  return (\n    <h5\n      data-slot=\"callout-title\"\n      className={cn(\n        \"font-semibold leading-none\",\n        \"[[data-size=blockCompact]_&]:inline [[data-size=blockCompact]_&]:mr-1\",\n        className\n      )}\n      {...props}\n    />\n  )\n}\n\nfunction CalloutDescription({\n  className,\n  ...props\n}: React.ComponentProps<\"div\">) {\n  return (\n    <div\n      data-slot=\"callout-description\"\n      className={cn(\n        \"text-sm [&_p]:leading-relaxed\",\n        \"[[data-size=compact]_&]:text-xs\",\n        \"[[data-size=blockCompact]_&]:text-xs [[data-size=blockCompact]_&]:inline\",\n        className\n      )}\n      {...props}\n    />\n  )\n}\n\nexport { Callout, CalloutTitle, CalloutDescription, calloutVariants }\n",
+      "type": "registry:ui"
+    }
+  ]
+}

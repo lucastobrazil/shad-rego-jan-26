@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "spinner",
+  "type": "registry:ui",
+  "title": "Spinner",
+  "description": "A loading spinner with size and variant options.",
+  "dependencies": [
+    "class-variance-authority",
+    "lucide-react"
+  ],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/vitality/ui/spinner.tsx",
+      "content": "import * as React from \"react\"\nimport { Loader2Icon } from \"lucide-react\"\nimport { cva, type VariantProps } from \"class-variance-authority\"\n\nimport { cn } from \"@/lib/utils\"\n\nconst spinnerVariants = cva(\"animate-spin\", {\n  variants: {\n    variant: {\n      default: \"text-foreground/70\",\n      inverse: \"text-white\",\n    },\n    size: {\n      xs: \"size-2\",\n      sm: \"size-4\",\n      md: \"size-6\",\n      lg: \"size-12\",\n      xl: \"size-24\",\n    },\n  },\n  defaultVariants: {\n    variant: \"default\",\n    size: \"sm\",\n  },\n})\n\ninterface SpinnerProps\n  extends React.ComponentProps<\"svg\">,\n    VariantProps<typeof spinnerVariants> {}\n\nfunction Spinner({ className, variant, size, ...props }: SpinnerProps) {\n  return (\n    <Loader2Icon\n      data-slot=\"spinner\"\n      strokeLinecap=\"round\"\n      className={cn(spinnerVariants({ variant, size }), className)}\n      {...props}\n    />\n  )\n}\n\nexport { Spinner, spinnerVariants }\n",
+      "type": "registry:ui"
+    }
+  ]
+}
