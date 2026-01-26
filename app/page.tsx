@@ -3,7 +3,7 @@
 import * as React from "react"
 import { toast } from "sonner"
 import { ThemeToggle } from "@/components/theme-toggle"
-import { AlertCircle, CheckCircle, Info, AlertTriangle } from "lucide-react"
+import { AlertCircle, Check, CheckCircle, Copy, Info, AlertTriangle } from "lucide-react"
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/registry/vitality/ui/avatar"
 import { Badge } from "@/registry/vitality/ui/badge"
@@ -313,6 +313,28 @@ const GLOBALS_CSS = `@import "tailwindcss";
   }
 }`
 
+function CopyButton({ text }: { text: string }) {
+  const [copied, setCopied] = React.useState(false)
+
+  const copy = () => {
+    navigator.clipboard.writeText(text)
+    setCopied(true)
+    setTimeout(() => setCopied(false), 2000)
+  }
+
+  return (
+    <Button
+      variant="ghost"
+      size="sm"
+      className="h-8 w-8 p-0 shrink-0"
+      onClick={copy}
+    >
+      {copied ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
+      <span className="sr-only">Copy to clipboard</span>
+    </Button>
+  )
+}
+
 function ComponentCard({
   id,
   title,
@@ -338,9 +360,12 @@ function ComponentCard({
         {children}
         <div className="mt-4 pt-4 border-t">
           <p className="text-xs text-muted-foreground mb-2">Install</p>
-          <code className="block bg-muted px-3 py-2 rounded-md text-xs font-mono overflow-x-auto">
-            {installCommand}
-          </code>
+          <div className="flex items-center gap-2 bg-muted px-3 py-2 rounded-md">
+            <code className="text-xs font-mono overflow-x-auto flex-1">
+              {installCommand}
+            </code>
+            <CopyButton text={installCommand} />
+          </div>
         </div>
       </CardContent>
     </Card>
@@ -402,9 +427,14 @@ export default function Home() {
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <pre className="bg-muted p-4 rounded-md overflow-x-auto text-xs font-mono max-h-96 overflow-y-auto">
-                  <code>{GLOBALS_CSS}</code>
-                </pre>
+                <div className="relative">
+                  <pre className="bg-muted p-4 rounded-md overflow-x-auto text-xs font-mono max-h-96 overflow-y-auto">
+                    <code>{GLOBALS_CSS}</code>
+                  </pre>
+                  <div className="absolute top-2 right-2">
+                    <CopyButton text={GLOBALS_CSS} />
+                  </div>
+                </div>
               </CardContent>
             </Card>
 
