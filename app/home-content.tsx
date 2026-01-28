@@ -1,12 +1,23 @@
-"use client"
+"use client";
 
-import * as React from "react"
-import { toast } from "sonner"
-import { ThemeToggle } from "@/components/theme-toggle"
-import { AlertCircle, Check, CheckCircle, Copy, Info, AlertTriangle } from "lucide-react"
+import * as React from "react";
+import { toast } from "sonner";
+import { ThemeToggle } from "@/components/theme-toggle";
+import {
+  AlertCircle,
+  Check,
+  CheckCircle,
+  Copy,
+  Info,
+  AlertTriangle,
+} from "lucide-react";
 
-import { Avatar, AvatarFallback, AvatarImage } from "@/registry/vitality/ui/avatar"
-import { Badge } from "@/registry/vitality/ui/badge"
+import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+} from "@/registry/vitality/ui/avatar";
+import { Badge } from "@/registry/vitality/ui/badge";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -14,10 +25,14 @@ import {
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
-} from "@/registry/vitality/ui/breadcrumb"
-import { Button } from "@/registry/vitality/ui/button"
-import { Calendar } from "@/registry/vitality/ui/calendar"
-import { Callout, CalloutTitle, CalloutDescription } from "@/registry/vitality/ui/callout"
+} from "@/registry/vitality/ui/breadcrumb";
+import { Button } from "@/registry/vitality/ui/button";
+import { Calendar } from "@/registry/vitality/ui/calendar";
+import {
+  Callout,
+  CalloutTitle,
+  CalloutDescription,
+} from "@/registry/vitality/ui/callout";
 import {
   Card,
   CardContent,
@@ -25,8 +40,8 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/registry/vitality/ui/card"
-import { Checkbox } from "@/registry/vitality/ui/checkbox"
+} from "@/registry/vitality/ui/card";
+import { Checkbox } from "@/registry/vitality/ui/checkbox";
 import {
   Dialog,
   DialogContent,
@@ -35,7 +50,7 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/registry/vitality/ui/dialog"
+} from "@/registry/vitality/ui/dialog";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -43,28 +58,28 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/registry/vitality/ui/dropdown-menu"
-import { Input } from "@/registry/vitality/ui/input"
-import { Label } from "@/registry/vitality/ui/label"
+} from "@/registry/vitality/ui/dropdown-menu";
+import { Input } from "@/registry/vitality/ui/input";
+import { Label } from "@/registry/vitality/ui/label";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@/registry/vitality/ui/popover"
-import { Progress } from "@/registry/vitality/ui/progress"
-import { RadioGroup, RadioGroupItem } from "@/registry/vitality/ui/radio-group"
+} from "@/registry/vitality/ui/popover";
+import { Progress } from "@/registry/vitality/ui/progress";
+import { RadioGroup, RadioGroupItem } from "@/registry/vitality/ui/radio-group";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/registry/vitality/ui/select"
-import { Separator } from "@/registry/vitality/ui/separator"
-import { Skeleton } from "@/registry/vitality/ui/skeleton"
-import { Spinner } from "@/registry/vitality/ui/spinner"
-import { StatusBadge } from "@/registry/vitality/ui/status-badge"
-import { Switch } from "@/registry/vitality/ui/switch"
+} from "@/registry/vitality/ui/select";
+import { Separator } from "@/registry/vitality/ui/separator";
+import { Skeleton } from "@/registry/vitality/ui/skeleton";
+import { Spinner } from "@/registry/vitality/ui/spinner";
+import { StatusBadge } from "@/registry/vitality/ui/status-badge";
+import { Switch } from "@/registry/vitality/ui/switch";
 import {
   Table,
   TableBody,
@@ -72,56 +87,61 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/registry/vitality/ui/table"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/vitality/ui/tabs"
-import { Textarea } from "@/registry/vitality/ui/textarea"
+} from "@/registry/vitality/ui/table";
+import {
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+} from "@/registry/vitality/ui/tabs";
+import { Textarea } from "@/registry/vitality/ui/textarea";
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from "@/registry/vitality/ui/tooltip"
+} from "@/registry/vitality/ui/tooltip";
 
-const components = [
-  "Theming",
-  "Avatar",
-  "Badge",
-  "Breadcrumb",
-  "Button",
-  "Calendar",
-  "Callout",
-  "Card",
-  "Checkbox",
-  "Dialog",
-  "Dropdown Menu",
-  "Input",
-  "Label",
-  "Popover",
-  "Progress",
-  "Radio Group",
-  "Select",
-  "Separator",
-  "Skeleton",
-  "Sonner",
-  "Spinner",
-  "Status Badge",
-  "Switch",
-  "Table",
-  "Tabs",
-  "Textarea",
-  "Tooltip",
-]
+const components: { name: string; isOfficial: boolean }[] = [
+  { name: "Theming", isOfficial: true },
+  { name: "Avatar", isOfficial: true },
+  { name: "Badge", isOfficial: true },
+  { name: "Breadcrumb", isOfficial: false },
+  { name: "Button", isOfficial: true },
+  { name: "Calendar", isOfficial: true },
+  { name: "Callout", isOfficial: true },
+  { name: "Card", isOfficial: false },
+  { name: "Checkbox", isOfficial: true },
+  { name: "Dialog", isOfficial: true },
+  { name: "Dropdown Menu", isOfficial: true },
+  { name: "Input", isOfficial: true },
+  { name: "Label", isOfficial: true },
+  { name: "Popover", isOfficial: true },
+  { name: "Progress", isOfficial: true },
+  { name: "Radio Group", isOfficial: true },
+  { name: "Select", isOfficial: true },
+  { name: "Separator", isOfficial: true },
+  { name: "Skeleton", isOfficial: true },
+  { name: "Sonner", isOfficial: true },
+  { name: "Spinner", isOfficial: true },
+  { name: "Status Badge", isOfficial: true },
+  { name: "Switch", isOfficial: true },
+  { name: "Table", isOfficial: true },
+  { name: "Tabs", isOfficial: true },
+  { name: "Textarea", isOfficial: true },
+  { name: "Tooltip", isOfficial: true },
+];
 
-const REGISTRY_URL = "https://lucastobrazil.github.io/shad-rego-jan-26"
+const REGISTRY_URL = "https://lucastobrazil.github.io/shad-rego-jan-26";
 
 function CopyButton({ text }: { text: string }) {
-  const [copied, setCopied] = React.useState(false)
+  const [copied, setCopied] = React.useState(false);
 
   const copy = () => {
-    navigator.clipboard.writeText(text)
-    setCopied(true)
-    setTimeout(() => setCopied(false), 2000)
-  }
+    navigator.clipboard.writeText(text);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
 
   return (
     <Button
@@ -133,7 +153,7 @@ function CopyButton({ text }: { text: string }) {
       {copied ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
       <span className="sr-only">Copy to clipboard</span>
     </Button>
-  )
+  );
 }
 
 function ComponentCard({
@@ -143,13 +163,13 @@ function ComponentCard({
   componentName,
   children,
 }: {
-  id: string
-  title: string
-  description: string
-  componentName: string
-  children: React.ReactNode
+  id: string;
+  title: string;
+  description: string;
+  componentName: string;
+  children: React.ReactNode;
 }) {
-  const installCommand = `npx shadcn@latest add ${REGISTRY_URL}/r/${componentName}.json`
+  const installCommand = `npx shadcn@latest add ${REGISTRY_URL}/r/${componentName}.json`;
 
   return (
     <Card id={id} className="scroll-mt-20">
@@ -170,19 +190,19 @@ function ComponentCard({
         </div>
       </CardContent>
     </Card>
-  )
+  );
 }
 
 export default function HomeContent({ globalsCss }: { globalsCss: string }) {
-  const [date, setDate] = React.useState<Date | undefined>(new Date())
-  const [progress, setProgress] = React.useState(33)
-  const [airplaneMode, setAirplaneMode] = React.useState(false)
-  const [notifications, setNotifications] = React.useState(true)
+  const [date, setDate] = React.useState<Date | undefined>(new Date());
+  const [progress, setProgress] = React.useState(33);
+  const [airplaneMode, setAirplaneMode] = React.useState(false);
+  const [notifications, setNotifications] = React.useState(true);
 
   React.useEffect(() => {
-    const timer = setTimeout(() => setProgress(66), 500)
-    return () => clearTimeout(timer)
-  }, [])
+    const timer = setTimeout(() => setProgress(66), 500);
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
     <TooltipProvider>
@@ -193,19 +213,24 @@ export default function HomeContent({ globalsCss }: { globalsCss: string }) {
         <aside className="fixed left-0 top-0 h-screen w-64 border-r bg-background p-6 overflow-y-auto">
           <h2 className="text-lg font-semibold mb-4">Components</h2>
           <nav className="space-y-1">
-            {components.map((name) => (
+            {components.map(({ name, isOfficial }) => (
               <a
                 key={name}
                 href={`#${name.toLowerCase().replace(/\s+/g, "-")}`}
-                className="block px-3 py-2 text-sm rounded-md hover:bg-muted transition-colors"
+                className="flex items-center justify-between px-3 py-2 text-sm rounded-md hover:bg-muted transition-colors"
               >
                 {name}
+                {isOfficial && <Badge variant="neutral">Official</Badge>}
               </a>
             ))}
           </nav>
           <Separator className="my-4" />
           <p className="text-xs text-muted-foreground">
-            Press <kbd className="px-1.5 py-0.5 bg-muted rounded text-xs">Shift+C</kbd> to toggle theme
+            Press{" "}
+            <kbd className="px-1.5 py-0.5 bg-muted rounded text-xs">
+              Shift+C
+            </kbd>{" "}
+            to toggle theme
           </p>
         </aside>
 
@@ -213,9 +238,12 @@ export default function HomeContent({ globalsCss }: { globalsCss: string }) {
         <main className="ml-64 flex-1 p-8">
           <div className="max-w-4xl mx-auto space-y-8">
             <div className="mb-12">
-              <h1 className="text-4xl font-bold mb-2">Vitality Component Registry</h1>
+              <h1 className="text-4xl font-bold mb-2">
+                Vitality Component Registry
+              </h1>
               <p className="text-muted-foreground">
-                A custom shadcn/ui component library built with the vitality theme.
+                A custom shadcn/ui component library built with the vitality
+                theme.
               </p>
             </div>
 
@@ -224,7 +252,8 @@ export default function HomeContent({ globalsCss }: { globalsCss: string }) {
               <CardHeader>
                 <CardTitle>Theming</CardTitle>
                 <CardDescription>
-                  Add these CSS variables to your globals.css file to use the Vitality theme.
+                  Add these CSS variables to your globals.css file to use the
+                  Vitality theme.
                 </CardDescription>
               </CardHeader>
               <CardContent>
@@ -255,7 +284,10 @@ export default function HomeContent({ globalsCss }: { globalsCss: string }) {
                     <AvatarFallback>SM</AvatarFallback>
                   </Avatar>
                   <Avatar size="md">
-                    <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
+                    <AvatarImage
+                      src="https://github.com/shadcn.png"
+                      alt="@shadcn"
+                    />
                     <AvatarFallback>MD</AvatarFallback>
                   </Avatar>
                   <Avatar size="lg">
@@ -305,7 +337,9 @@ export default function HomeContent({ globalsCss }: { globalsCss: string }) {
                   </BreadcrumbItem>
                   <BreadcrumbSeparator />
                   <BreadcrumbItem>
-                    <BreadcrumbLink href="/components">Components</BreadcrumbLink>
+                    <BreadcrumbLink href="/components">
+                      Components
+                    </BreadcrumbLink>
                   </BreadcrumbItem>
                   <BreadcrumbSeparator />
                   <BreadcrumbItem>
@@ -394,12 +428,16 @@ export default function HomeContent({ globalsCss }: { globalsCss: string }) {
                   </CalloutDescription>
                 </Callout>
                 <Callout variant="info" size="compact">
-                  <CalloutDescription>Compact inline callout</CalloutDescription>
+                  <CalloutDescription>
+                    Compact inline callout
+                  </CalloutDescription>
                 </Callout>
                 <Callout variant="warning" size="blockCompact">
                   <AlertTriangle className="size-3" />
                   <CalloutTitle>Block Compact</CalloutTitle>
-                  <CalloutDescription>A smaller block-level callout.</CalloutDescription>
+                  <CalloutDescription>
+                    A smaller block-level callout.
+                  </CalloutDescription>
                 </Callout>
               </div>
             </ComponentCard>
@@ -414,7 +452,9 @@ export default function HomeContent({ globalsCss }: { globalsCss: string }) {
               <Card className="w-[350px]">
                 <CardHeader>
                   <CardTitle>Create project</CardTitle>
-                  <CardDescription>Deploy your new project in one-click.</CardDescription>
+                  <CardDescription>
+                    Deploy your new project in one-click.
+                  </CardDescription>
                 </CardHeader>
                 <CardContent>
                   <p className="text-sm text-muted-foreground">
@@ -461,7 +501,8 @@ export default function HomeContent({ globalsCss }: { globalsCss: string }) {
                   <DialogHeader>
                     <DialogTitle>Are you sure?</DialogTitle>
                     <DialogDescription>
-                      This action cannot be undone. This will permanently delete your account.
+                      This action cannot be undone. This will permanently delete
+                      your account.
                     </DialogDescription>
                   </DialogHeader>
                   <DialogFooter>
@@ -645,9 +686,7 @@ export default function HomeContent({ globalsCss }: { globalsCss: string }) {
               componentName="sonner"
             >
               <div className="flex gap-2">
-                <Button
-                  onClick={() => toast("Event has been created")}
-                >
+                <Button onClick={() => toast("Event has been created")}>
                   Show Toast
                 </Button>
                 <Button
@@ -837,5 +876,5 @@ export default function HomeContent({ globalsCss }: { globalsCss: string }) {
         </main>
       </div>
     </TooltipProvider>
-  )
+  );
 }
