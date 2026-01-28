@@ -208,7 +208,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/registry/vitality/ui/tooltip";
-import { SidebarNav } from "@/components/sidebar-nav";
+import { SidebarNav, components } from "@/components/sidebar-nav";
 
 const REGISTRY_URL = "https://lucastobrazil.github.io/shad-rego-jan-26";
 
@@ -234,6 +234,12 @@ function CopyButton({ text }: { text: string }) {
   );
 }
 
+// Helper to look up isOfficial status by component title
+function getIsOfficial(title: string): boolean {
+  const component = components.find((c) => c.name === title);
+  return component?.isOfficial ?? false;
+}
+
 function ComponentCard({
   id,
   title,
@@ -248,11 +254,15 @@ function ComponentCard({
   children: React.ReactNode;
 }) {
   const installCommand = `npx shadcn@latest add ${REGISTRY_URL}/r/${componentName}.json`;
+  const isOfficial = getIsOfficial(title);
 
   return (
     <Card id={id} className="scroll-mt-20">
       <CardHeader>
-        <CardTitle>{title}</CardTitle>
+        <div className="flex items-center gap-2">
+          <CardTitle>{title}</CardTitle>
+          {isOfficial && <Badge variant="neutral">Official</Badge>}
+        </div>
         <CardDescription>{description}</CardDescription>
       </CardHeader>
       <CardContent className="space-y-4">
@@ -305,7 +315,10 @@ export default function HomeContent({ globalsCss }: { globalsCss: string }) {
             {/* Theming */}
             <Card id="theming" className="scroll-mt-20">
               <CardHeader>
-                <CardTitle>Theming</CardTitle>
+                <div className="flex items-center gap-2">
+                  <CardTitle>Theming</CardTitle>
+                  <Badge variant="neutral">Official</Badge>
+                </div>
                 <CardDescription>
                   Add these CSS variables to your globals.css file to use the
                   Vitality theme.
