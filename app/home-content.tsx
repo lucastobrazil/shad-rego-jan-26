@@ -5,13 +5,30 @@ import { toast } from "sonner";
 import { ThemeToggle } from "@/components/theme-toggle";
 import {
   AlertCircle,
+  Bold,
   Check,
   CheckCircle,
+  ChevronsUpDown,
   Copy,
   Info,
+  Italic,
   AlertTriangle,
+  Underline,
+  Calculator,
+  Calendar as CalendarIcon,
+  CreditCard,
+  Settings,
+  Smile,
+  User,
 } from "lucide-react";
 
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/registry/vitality/ui/accordion";
+import { AspectRatio } from "@/registry/vitality/ui/aspect-ratio";
 import {
   Avatar,
   AvatarFallback,
@@ -29,6 +46,13 @@ import {
 import { Button } from "@/registry/vitality/ui/button";
 import { Calendar } from "@/registry/vitality/ui/calendar";
 import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/registry/vitality/ui/carousel";
+import {
   Callout,
   CalloutTitle,
   CalloutDescription,
@@ -43,6 +67,26 @@ import {
 } from "@/registry/vitality/ui/card";
 import { Checkbox } from "@/registry/vitality/ui/checkbox";
 import {
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from "@/registry/vitality/ui/collapsible";
+import {
+  Command,
+  CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+  CommandList,
+  CommandSeparator,
+} from "@/registry/vitality/ui/command";
+import {
+  ContextMenu,
+  ContextMenuContent,
+  ContextMenuItem,
+  ContextMenuTrigger,
+} from "@/registry/vitality/ui/context-menu";
+import {
   Dialog,
   DialogContent,
   DialogDescription,
@@ -52,6 +96,16 @@ import {
   DialogTrigger,
 } from "@/registry/vitality/ui/dialog";
 import {
+  Drawer,
+  DrawerClose,
+  DrawerContent,
+  DrawerDescription,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerTitle,
+  DrawerTrigger,
+} from "@/registry/vitality/ui/drawer";
+import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
@@ -59,8 +113,44 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/registry/vitality/ui/dropdown-menu";
+import {
+  HoverCard,
+  HoverCardContent,
+  HoverCardTrigger,
+} from "@/registry/vitality/ui/hover-card";
 import { Input } from "@/registry/vitality/ui/input";
+import {
+  InputOTP,
+  InputOTPGroup,
+  InputOTPSeparator,
+  InputOTPSlot,
+} from "@/registry/vitality/ui/input-otp";
 import { Label } from "@/registry/vitality/ui/label";
+import {
+  Menubar,
+  MenubarContent,
+  MenubarItem,
+  MenubarMenu,
+  MenubarSeparator,
+  MenubarTrigger,
+} from "@/registry/vitality/ui/menubar";
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+} from "@/registry/vitality/ui/navigation-menu";
+import {
+  Pagination,
+  PaginationContent,
+  PaginationEllipsis,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from "@/registry/vitality/ui/pagination";
 import {
   Popover,
   PopoverContent,
@@ -69,6 +159,12 @@ import {
 import { Progress } from "@/registry/vitality/ui/progress";
 import { RadioGroup, RadioGroupItem } from "@/registry/vitality/ui/radio-group";
 import {
+  ResizableHandle,
+  ResizablePanel,
+  ResizablePanelGroup,
+} from "@/registry/vitality/ui/resizable";
+import { ScrollArea } from "@/registry/vitality/ui/scroll-area";
+import {
   Select,
   SelectContent,
   SelectItem,
@@ -76,7 +172,16 @@ import {
   SelectValue,
 } from "@/registry/vitality/ui/select";
 import { Separator } from "@/registry/vitality/ui/separator";
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/registry/vitality/ui/sheet";
 import { Skeleton } from "@/registry/vitality/ui/skeleton";
+import { Slider } from "@/registry/vitality/ui/slider";
 import { Spinner } from "@/registry/vitality/ui/spinner";
 import { StatusBadge } from "@/registry/vitality/ui/status-badge";
 import { Switch } from "@/registry/vitality/ui/switch";
@@ -95,6 +200,8 @@ import {
   TabsTrigger,
 } from "@/registry/vitality/ui/tabs";
 import { Textarea } from "@/registry/vitality/ui/textarea";
+import { Toggle } from "@/registry/vitality/ui/toggle";
+import { ToggleGroup, ToggleGroupItem } from "@/registry/vitality/ui/toggle-group";
 import {
   Tooltip,
   TooltipContent,
@@ -104,6 +211,8 @@ import {
 
 const components: { name: string; isOfficial: boolean }[] = [
   { name: "Theming", isOfficial: true },
+  { name: "Accordion", isOfficial: false },
+  { name: "Aspect Ratio", isOfficial: false },
   { name: "Avatar", isOfficial: true },
   { name: "Badge", isOfficial: true },
   { name: "Breadcrumb", isOfficial: false },
@@ -111,17 +220,31 @@ const components: { name: string; isOfficial: boolean }[] = [
   { name: "Calendar", isOfficial: true },
   { name: "Callout", isOfficial: true },
   { name: "Card", isOfficial: false },
+  { name: "Carousel", isOfficial: false },
   { name: "Checkbox", isOfficial: true },
+  { name: "Collapsible", isOfficial: false },
+  { name: "Command", isOfficial: false },
+  { name: "Context Menu", isOfficial: false },
   { name: "Dialog", isOfficial: true },
+  { name: "Drawer", isOfficial: false },
   { name: "Dropdown Menu", isOfficial: true },
+  { name: "Hover Card", isOfficial: false },
   { name: "Input", isOfficial: true },
+  { name: "Input OTP", isOfficial: false },
   { name: "Label", isOfficial: true },
+  { name: "Menubar", isOfficial: false },
+  { name: "Navigation Menu", isOfficial: false },
+  { name: "Pagination", isOfficial: false },
   { name: "Popover", isOfficial: true },
   { name: "Progress", isOfficial: true },
   { name: "Radio Group", isOfficial: true },
+  { name: "Resizable", isOfficial: false },
+  { name: "Scroll Area", isOfficial: false },
   { name: "Select", isOfficial: true },
   { name: "Separator", isOfficial: true },
+  { name: "Sheet", isOfficial: false },
   { name: "Skeleton", isOfficial: true },
+  { name: "Slider", isOfficial: false },
   { name: "Sonner", isOfficial: true },
   { name: "Spinner", isOfficial: true },
   { name: "Status Badge", isOfficial: true },
@@ -129,6 +252,8 @@ const components: { name: string; isOfficial: boolean }[] = [
   { name: "Table", isOfficial: true },
   { name: "Tabs", isOfficial: true },
   { name: "Textarea", isOfficial: true },
+  { name: "Toggle", isOfficial: false },
+  { name: "Toggle Group", isOfficial: false },
   { name: "Tooltip", isOfficial: true },
 ];
 
@@ -267,6 +392,49 @@ export default function HomeContent({ globalsCss }: { globalsCss: string }) {
                 </div>
               </CardContent>
             </Card>
+
+            {/* Accordion */}
+            <ComponentCard
+              id="accordion"
+              title="Accordion"
+              description="A vertically stacked set of interactive headings that reveal content."
+              componentName="accordion"
+            >
+              <Accordion type="single" collapsible className="w-full">
+                <AccordionItem value="item-1">
+                  <AccordionTrigger>Is it accessible?</AccordionTrigger>
+                  <AccordionContent>
+                    Yes. It adheres to the WAI-ARIA design pattern.
+                  </AccordionContent>
+                </AccordionItem>
+                <AccordionItem value="item-2">
+                  <AccordionTrigger>Is it styled?</AccordionTrigger>
+                  <AccordionContent>
+                    Yes. It comes with default styles that match the other components.
+                  </AccordionContent>
+                </AccordionItem>
+                <AccordionItem value="item-3">
+                  <AccordionTrigger>Is it animated?</AccordionTrigger>
+                  <AccordionContent>
+                    Yes. It&apos;s animated by default, but you can disable it if you prefer.
+                  </AccordionContent>
+                </AccordionItem>
+              </Accordion>
+            </ComponentCard>
+
+            {/* Aspect Ratio */}
+            <ComponentCard
+              id="aspect-ratio"
+              title="Aspect Ratio"
+              description="Displays content within a desired ratio."
+              componentName="aspect-ratio"
+            >
+              <div className="w-[450px]">
+                <AspectRatio ratio={16 / 9} className="bg-muted rounded-md flex items-center justify-center">
+                  <span className="text-muted-foreground">16:9</span>
+                </AspectRatio>
+              </div>
+            </ComponentCard>
 
             {/* Avatar */}
             <ComponentCard
@@ -467,6 +635,34 @@ export default function HomeContent({ globalsCss }: { globalsCss: string }) {
               </Card>
             </ComponentCard>
 
+            {/* Carousel */}
+            <ComponentCard
+              id="carousel"
+              title="Carousel"
+              description="A carousel with motion and swipe built using Embla."
+              componentName="carousel"
+            >
+              <div className="w-full max-w-xs mx-auto">
+                <Carousel>
+                  <CarouselContent>
+                    {Array.from({ length: 5 }).map((_, index) => (
+                      <CarouselItem key={index}>
+                        <div className="p-1">
+                          <Card>
+                            <CardContent className="flex aspect-square items-center justify-center p-6">
+                              <span className="text-4xl font-semibold">{index + 1}</span>
+                            </CardContent>
+                          </Card>
+                        </div>
+                      </CarouselItem>
+                    ))}
+                  </CarouselContent>
+                  <CarouselPrevious />
+                  <CarouselNext />
+                </Carousel>
+              </div>
+            </ComponentCard>
+
             {/* Checkbox */}
             <ComponentCard
               id="checkbox"
@@ -484,6 +680,100 @@ export default function HomeContent({ globalsCss }: { globalsCss: string }) {
                   <Label htmlFor="newsletter">Subscribe to newsletter</Label>
                 </div>
               </div>
+            </ComponentCard>
+
+            {/* Collapsible */}
+            <ComponentCard
+              id="collapsible"
+              title="Collapsible"
+              description="An interactive component which expands/collapses a panel."
+              componentName="collapsible"
+            >
+              <Collapsible className="w-[350px] space-y-2">
+                <div className="flex items-center justify-between space-x-4 px-4">
+                  <h4 className="text-sm font-semibold">@peduarte starred 3 repositories</h4>
+                  <CollapsibleTrigger asChild>
+                    <Button variant="ghost" size="sm" className="w-9 p-0">
+                      <ChevronsUpDown className="h-4 w-4" />
+                      <span className="sr-only">Toggle</span>
+                    </Button>
+                  </CollapsibleTrigger>
+                </div>
+                <div className="rounded-md border px-4 py-3 font-mono text-sm">
+                  @radix-ui/primitives
+                </div>
+                <CollapsibleContent className="space-y-2">
+                  <div className="rounded-md border px-4 py-3 font-mono text-sm">
+                    @radix-ui/colors
+                  </div>
+                  <div className="rounded-md border px-4 py-3 font-mono text-sm">
+                    @stitches/react
+                  </div>
+                </CollapsibleContent>
+              </Collapsible>
+            </ComponentCard>
+
+            {/* Command */}
+            <ComponentCard
+              id="command"
+              title="Command"
+              description="Fast, composable, unstyled command menu for React."
+              componentName="command"
+            >
+              <Command className="rounded-lg border shadow-md">
+                <CommandInput placeholder="Type a command or search..." />
+                <CommandList>
+                  <CommandEmpty>No results found.</CommandEmpty>
+                  <CommandGroup heading="Suggestions">
+                    <CommandItem>
+                      <CalendarIcon className="mr-2 h-4 w-4" />
+                      <span>Calendar</span>
+                    </CommandItem>
+                    <CommandItem>
+                      <Smile className="mr-2 h-4 w-4" />
+                      <span>Search Emoji</span>
+                    </CommandItem>
+                    <CommandItem>
+                      <Calculator className="mr-2 h-4 w-4" />
+                      <span>Calculator</span>
+                    </CommandItem>
+                  </CommandGroup>
+                  <CommandSeparator />
+                  <CommandGroup heading="Settings">
+                    <CommandItem>
+                      <User className="mr-2 h-4 w-4" />
+                      <span>Profile</span>
+                    </CommandItem>
+                    <CommandItem>
+                      <CreditCard className="mr-2 h-4 w-4" />
+                      <span>Billing</span>
+                    </CommandItem>
+                    <CommandItem>
+                      <Settings className="mr-2 h-4 w-4" />
+                      <span>Settings</span>
+                    </CommandItem>
+                  </CommandGroup>
+                </CommandList>
+              </Command>
+            </ComponentCard>
+
+            {/* Context Menu */}
+            <ComponentCard
+              id="context-menu"
+              title="Context Menu"
+              description="Displays a menu located at the pointer, triggered by a right-click."
+              componentName="context-menu"
+            >
+              <ContextMenu>
+                <ContextMenuTrigger className="flex h-[150px] w-[300px] items-center justify-center rounded-md border border-dashed text-sm">
+                  Right click here
+                </ContextMenuTrigger>
+                <ContextMenuContent className="w-64">
+                  <ContextMenuItem>Back</ContextMenuItem>
+                  <ContextMenuItem>Forward</ContextMenuItem>
+                  <ContextMenuItem>Reload</ContextMenuItem>
+                </ContextMenuContent>
+              </ContextMenu>
             </ComponentCard>
 
             {/* Dialog */}
@@ -513,6 +803,32 @@ export default function HomeContent({ globalsCss }: { globalsCss: string }) {
               </Dialog>
             </ComponentCard>
 
+            {/* Drawer */}
+            <ComponentCard
+              id="drawer"
+              title="Drawer"
+              description="A drawer component for React."
+              componentName="drawer"
+            >
+              <Drawer>
+                <DrawerTrigger asChild>
+                  <Button>Open Drawer</Button>
+                </DrawerTrigger>
+                <DrawerContent>
+                  <DrawerHeader>
+                    <DrawerTitle>Are you sure?</DrawerTitle>
+                    <DrawerDescription>This action cannot be undone.</DrawerDescription>
+                  </DrawerHeader>
+                  <DrawerFooter>
+                    <Button>Submit</Button>
+                    <DrawerClose asChild>
+                      <Button variant="ghost">Cancel</Button>
+                    </DrawerClose>
+                  </DrawerFooter>
+                </DrawerContent>
+              </Drawer>
+            </ComponentCard>
+
             {/* Dropdown Menu */}
             <ComponentCard
               id="dropdown-menu"
@@ -536,6 +852,33 @@ export default function HomeContent({ globalsCss }: { globalsCss: string }) {
               </DropdownMenu>
             </ComponentCard>
 
+            {/* Hover Card */}
+            <ComponentCard
+              id="hover-card"
+              title="Hover Card"
+              description="For sighted users to preview content available behind a link."
+              componentName="hover-card"
+            >
+              <HoverCard>
+                <HoverCardTrigger asChild>
+                  <Button variant="link">@nextjs</Button>
+                </HoverCardTrigger>
+                <HoverCardContent className="w-80">
+                  <div className="space-y-1">
+                    <h4 className="text-sm font-semibold">@nextjs</h4>
+                    <p className="text-sm">
+                      The React Framework – created and maintained by @vercel.
+                    </p>
+                    <div className="flex items-center pt-2">
+                      <span className="text-xs text-muted-foreground">
+                        Joined December 2021
+                      </span>
+                    </div>
+                  </div>
+                </HoverCardContent>
+              </HoverCard>
+            </ComponentCard>
+
             {/* Input */}
             <ComponentCard
               id="input"
@@ -548,6 +891,28 @@ export default function HomeContent({ globalsCss }: { globalsCss: string }) {
                 <Input placeholder="Password" type="password" />
                 <Input placeholder="Disabled" disabled />
               </div>
+            </ComponentCard>
+
+            {/* Input OTP */}
+            <ComponentCard
+              id="input-otp"
+              title="Input OTP"
+              description="Accessible one-time password component with copy paste functionality."
+              componentName="input-otp"
+            >
+              <InputOTP maxLength={6}>
+                <InputOTPGroup>
+                  <InputOTPSlot index={0} />
+                  <InputOTPSlot index={1} />
+                  <InputOTPSlot index={2} />
+                </InputOTPGroup>
+                <InputOTPSeparator />
+                <InputOTPGroup>
+                  <InputOTPSlot index={3} />
+                  <InputOTPSlot index={4} />
+                  <InputOTPSlot index={5} />
+                </InputOTPGroup>
+              </InputOTP>
             </ComponentCard>
 
             {/* Label */}
@@ -563,6 +928,116 @@ export default function HomeContent({ globalsCss }: { globalsCss: string }) {
                   <Input id="email-label" placeholder="Enter your email" />
                 </div>
               </div>
+            </ComponentCard>
+
+            {/* Menubar */}
+            <ComponentCard
+              id="menubar"
+              title="Menubar"
+              description="A visually persistent menu common in desktop applications."
+              componentName="menubar"
+            >
+              <Menubar>
+                <MenubarMenu>
+                  <MenubarTrigger>File</MenubarTrigger>
+                  <MenubarContent>
+                    <MenubarItem>New Tab</MenubarItem>
+                    <MenubarItem>New Window</MenubarItem>
+                    <MenubarSeparator />
+                    <MenubarItem>Share</MenubarItem>
+                    <MenubarItem>Print</MenubarItem>
+                  </MenubarContent>
+                </MenubarMenu>
+                <MenubarMenu>
+                  <MenubarTrigger>Edit</MenubarTrigger>
+                  <MenubarContent>
+                    <MenubarItem>Undo</MenubarItem>
+                    <MenubarItem>Redo</MenubarItem>
+                    <MenubarSeparator />
+                    <MenubarItem>Cut</MenubarItem>
+                    <MenubarItem>Copy</MenubarItem>
+                    <MenubarItem>Paste</MenubarItem>
+                  </MenubarContent>
+                </MenubarMenu>
+              </Menubar>
+            </ComponentCard>
+
+            {/* Navigation Menu */}
+            <ComponentCard
+              id="navigation-menu"
+              title="Navigation Menu"
+              description="A collection of links for navigating websites."
+              componentName="navigation-menu"
+            >
+              <NavigationMenu>
+                <NavigationMenuList>
+                  <NavigationMenuItem>
+                    <NavigationMenuTrigger>Getting started</NavigationMenuTrigger>
+                    <NavigationMenuContent>
+                      <ul className="grid gap-3 p-4 w-[400px]">
+                        <li>
+                          <NavigationMenuLink asChild>
+                            <a className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
+                              <div className="text-sm font-medium leading-none">Introduction</div>
+                              <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+                                Re-usable components built with Radix UI and Tailwind CSS.
+                              </p>
+                            </a>
+                          </NavigationMenuLink>
+                        </li>
+                      </ul>
+                    </NavigationMenuContent>
+                  </NavigationMenuItem>
+                  <NavigationMenuItem>
+                    <NavigationMenuTrigger>Components</NavigationMenuTrigger>
+                    <NavigationMenuContent>
+                      <ul className="grid gap-3 p-4 w-[400px]">
+                        <li>
+                          <NavigationMenuLink asChild>
+                            <a className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
+                              <div className="text-sm font-medium leading-none">Alert Dialog</div>
+                              <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+                                A modal dialog that interrupts the user.
+                              </p>
+                            </a>
+                          </NavigationMenuLink>
+                        </li>
+                      </ul>
+                    </NavigationMenuContent>
+                  </NavigationMenuItem>
+                </NavigationMenuList>
+              </NavigationMenu>
+            </ComponentCard>
+
+            {/* Pagination */}
+            <ComponentCard
+              id="pagination"
+              title="Pagination"
+              description="Pagination with page navigation, next and previous links."
+              componentName="pagination"
+            >
+              <Pagination>
+                <PaginationContent>
+                  <PaginationItem>
+                    <PaginationPrevious href="#" size="default" />
+                  </PaginationItem>
+                  <PaginationItem>
+                    <PaginationLink href="#" size="default">1</PaginationLink>
+                  </PaginationItem>
+                  <PaginationItem>
+                    <PaginationLink href="#" size="default" isActive>2</PaginationLink>
+                  </PaginationItem>
+                  <PaginationItem>
+                    <PaginationLink href="#" size="default">3</PaginationLink>
+                  </PaginationItem>
+                  <PaginationItem>
+                    <PaginationEllipsis />
+                  </PaginationItem>
+                  <PaginationItem>
+                    <PaginationNext href="#" size="default" />
+                  </PaginationItem>
+                </PaginationContent>
+              </Pagination>
             </ComponentCard>
 
             {/* Popover */}
@@ -624,6 +1099,50 @@ export default function HomeContent({ globalsCss }: { globalsCss: string }) {
               </RadioGroup>
             </ComponentCard>
 
+            {/* Resizable */}
+            <ComponentCard
+              id="resizable"
+              title="Resizable"
+              description="Accessible resizable panel groups and layouts with keyboard support."
+              componentName="resizable"
+            >
+              <ResizablePanelGroup
+                orientation="horizontal"
+                className="max-w-md rounded-lg border"
+              >
+                <ResizablePanel defaultSize={50}>
+                  <div className="flex h-[200px] items-center justify-center p-6">
+                    <span className="font-semibold">One</span>
+                  </div>
+                </ResizablePanel>
+                <ResizableHandle withHandle />
+                <ResizablePanel defaultSize={50}>
+                  <div className="flex h-[200px] items-center justify-center p-6">
+                    <span className="font-semibold">Two</span>
+                  </div>
+                </ResizablePanel>
+              </ResizablePanelGroup>
+            </ComponentCard>
+
+            {/* Scroll Area */}
+            <ComponentCard
+              id="scroll-area"
+              title="Scroll Area"
+              description="Augments native scroll functionality for custom, cross-browser styling."
+              componentName="scroll-area"
+            >
+              <ScrollArea className="h-72 w-48 rounded-md border">
+                <div className="p-4">
+                  <h4 className="mb-4 text-sm font-medium leading-none">Tags</h4>
+                  {Array.from({ length: 50 }).map((_, i) => (
+                    <div key={i} className="text-sm py-1">
+                      Tag {i + 1}
+                    </div>
+                  ))}
+                </div>
+              </ScrollArea>
+            </ComponentCard>
+
             {/* Select */}
             <ComponentCard
               id="select"
@@ -662,6 +1181,40 @@ export default function HomeContent({ globalsCss }: { globalsCss: string }) {
               </div>
             </ComponentCard>
 
+            {/* Sheet */}
+            <ComponentCard
+              id="sheet"
+              title="Sheet"
+              description="Extends the Dialog component to display content that complements the main content of the screen."
+              componentName="sheet"
+            >
+              <Sheet>
+                <SheetTrigger asChild>
+                  <Button>Open Sheet</Button>
+                </SheetTrigger>
+                <SheetContent>
+                  <SheetHeader>
+                    <SheetTitle>Edit profile</SheetTitle>
+                    <SheetDescription>
+                      Make changes to your profile here. Click save when you&apos;re done.
+                    </SheetDescription>
+                  </SheetHeader>
+                  <div className="py-4">
+                    <div className="space-y-4">
+                      <div className="space-y-2">
+                        <Label htmlFor="name">Name</Label>
+                        <Input id="name" placeholder="Enter your name" />
+                      </div>
+                      <div className="space-y-2">
+                        <Label htmlFor="username">Username</Label>
+                        <Input id="username" placeholder="Enter your username" />
+                      </div>
+                    </div>
+                  </div>
+                </SheetContent>
+              </Sheet>
+            </ComponentCard>
+
             {/* Skeleton */}
             <ComponentCard
               id="skeleton"
@@ -675,6 +1228,19 @@ export default function HomeContent({ globalsCss }: { globalsCss: string }) {
                   <Skeleton className="h-4 w-[250px]" />
                   <Skeleton className="h-4 w-[200px]" />
                 </div>
+              </div>
+            </ComponentCard>
+
+            {/* Slider */}
+            <ComponentCard
+              id="slider"
+              title="Slider"
+              description="An input where the user selects a value from within a given range."
+              componentName="slider"
+            >
+              <div className="w-full max-w-sm space-y-4">
+                <Slider defaultValue={[50]} max={100} step={1} />
+                <Slider defaultValue={[25, 75]} max={100} step={1} />
               </div>
             </ComponentCard>
 
@@ -854,6 +1420,46 @@ export default function HomeContent({ globalsCss }: { globalsCss: string }) {
               <div className="max-w-sm">
                 <Textarea placeholder="Type your message here." />
               </div>
+            </ComponentCard>
+
+            {/* Toggle */}
+            <ComponentCard
+              id="toggle"
+              title="Toggle"
+              description="A two-state button that can be either on or off."
+              componentName="toggle"
+            >
+              <div className="flex gap-2">
+                <Toggle aria-label="Toggle bold">
+                  <Bold className="h-4 w-4" />
+                </Toggle>
+                <Toggle aria-label="Toggle italic">
+                  <Italic className="h-4 w-4" />
+                </Toggle>
+                <Toggle aria-label="Toggle underline">
+                  <Underline className="h-4 w-4" />
+                </Toggle>
+              </div>
+            </ComponentCard>
+
+            {/* Toggle Group */}
+            <ComponentCard
+              id="toggle-group"
+              title="Toggle Group"
+              description="A set of two-state buttons that can be toggled on or off."
+              componentName="toggle-group"
+            >
+              <ToggleGroup type="multiple">
+                <ToggleGroupItem value="bold" aria-label="Toggle bold">
+                  <Bold className="h-4 w-4" />
+                </ToggleGroupItem>
+                <ToggleGroupItem value="italic" aria-label="Toggle italic">
+                  <Italic className="h-4 w-4" />
+                </ToggleGroupItem>
+                <ToggleGroupItem value="underline" aria-label="Toggle underline">
+                  <Underline className="h-4 w-4" />
+                </ToggleGroupItem>
+              </ToggleGroup>
             </ComponentCard>
 
             {/* Tooltip */}
