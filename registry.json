@@ -545,6 +545,17 @@
       "files": [
         { "path": "registry/vitality/ui/typography.tsx", "type": "registry:ui" }
       ]
+    },
+    {
+      "name": "header",
+      "type": "registry:block",
+      "title": "Header",
+      "description": "A responsive header with navigation and mobile menu.",
+      "dependencies": ["lucide-react"],
+      "registryDependencies": ["input", "avatar", "dropdown-menu"],
+      "files": [
+        { "path": "registry/vitality/blocks/header.tsx", "type": "registry:block" }
+      ]
     }
   ]
 }
