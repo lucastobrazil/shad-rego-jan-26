@@ -512,6 +512,39 @@
       "files": [
         { "path": "registry/vitality/ui/tooltip.tsx", "type": "registry:ui" }
       ]
+    },
+    {
+      "name": "kbd",
+      "type": "registry:ui",
+      "title": "Kbd",
+      "description": "Displays keyboard keys or shortcuts.",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        { "path": "registry/vitality/ui/kbd.tsx", "type": "registry:ui" }
+      ]
+    },
+    {
+      "name": "empty",
+      "type": "registry:ui",
+      "title": "Empty",
+      "description": "Empty state placeholder for when there is no data to display.",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        { "path": "registry/vitality/ui/empty.tsx", "type": "registry:ui" }
+      ]
+    },
+    {
+      "name": "typography",
+      "type": "registry:ui",
+      "title": "Typography",
+      "description": "Styles for headings, paragraphs, and other text elements.",
+      "dependencies": [],
+      "registryDependencies": [],
+      "files": [
+        { "path": "registry/vitality/ui/typography.tsx", "type": "registry:ui" }
+      ]
     }
   ]
 }

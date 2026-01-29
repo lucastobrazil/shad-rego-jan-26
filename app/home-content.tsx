@@ -10,6 +10,7 @@ import {
   CheckCircle,
   ChevronsUpDown,
   Copy,
+  FolderOpen,
   Info,
   Italic,
   AlertTriangle,
@@ -208,6 +209,26 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/registry/vitality/ui/tooltip";
+import { Kbd } from "@/registry/vitality/ui/kbd";
+import {
+  Empty,
+  EmptyIcon,
+  EmptyTitle,
+  EmptyDescription,
+} from "@/registry/vitality/ui/empty";
+import {
+  TypographyH1,
+  TypographyH2,
+  TypographyH3,
+  TypographyH4,
+  TypographyP,
+  TypographyBlockquote,
+  TypographyInlineCode,
+  TypographyLead,
+  TypographyLarge,
+  TypographySmall,
+  TypographyMuted,
+} from "@/registry/vitality/ui/typography";
 import { SidebarNav, components } from "@/components/sidebar-nav";
 
 const REGISTRY_URL = "https://lucastobrazil.github.io/shad-rego-jan-26";
@@ -795,6 +816,25 @@ export default function HomeContent({ globalsCss }: { globalsCss: string }) {
               </DropdownMenu>
             </ComponentCard>
 
+            {/* Empty */}
+            <ComponentCard
+              id="empty"
+              title="Empty"
+              description="Empty state placeholder for when there is no data to display."
+              componentName="empty"
+            >
+              <Empty className="min-h-[250px]">
+                <EmptyIcon>
+                  <FolderOpen className="h-10 w-10 text-muted-foreground" />
+                </EmptyIcon>
+                <EmptyTitle>No projects found</EmptyTitle>
+                <EmptyDescription>
+                  Get started by creating a new project.
+                </EmptyDescription>
+                <Button>Create Project</Button>
+              </Empty>
+            </ComponentCard>
+
             {/* Hover Card */}
             <ComponentCard
               id="hover-card"
@@ -856,6 +896,32 @@ export default function HomeContent({ globalsCss }: { globalsCss: string }) {
                   <InputOTPSlot index={5} />
                 </InputOTPGroup>
               </InputOTP>
+            </ComponentCard>
+
+            {/* Kbd */}
+            <ComponentCard
+              id="kbd"
+              title="Kbd"
+              description="Displays keyboard keys or shortcuts."
+              componentName="kbd"
+            >
+              <div className="flex flex-wrap items-center gap-4">
+                <div className="flex items-center gap-1">
+                  <Kbd>⌘</Kbd>
+                  <Kbd>K</Kbd>
+                </div>
+                <div className="flex items-center gap-1">
+                  <Kbd>Ctrl</Kbd>
+                  <span className="text-muted-foreground">+</span>
+                  <Kbd>C</Kbd>
+                </div>
+                <div className="flex items-center gap-1">
+                  <Kbd>Shift</Kbd>
+                  <span className="text-muted-foreground">+</span>
+                  <Kbd>Enter</Kbd>
+                </div>
+                <Kbd>Esc</Kbd>
+              </div>
             </ComponentCard>
 
             {/* Label */}
@@ -1420,6 +1486,42 @@ export default function HomeContent({ globalsCss }: { globalsCss: string }) {
                   <p>This is a tooltip</p>
                 </TooltipContent>
               </Tooltip>
+            </ComponentCard>
+
+            {/* Typography */}
+            <ComponentCard
+              id="typography"
+              title="Typography"
+              description="Styles for headings, paragraphs, and other text elements."
+              componentName="typography"
+            >
+              <div className="space-y-6">
+                <div className="space-y-2">
+                  <TypographyH1>Heading 1</TypographyH1>
+                  <TypographyH2>Heading 2</TypographyH2>
+                  <TypographyH3>Heading 3</TypographyH3>
+                  <TypographyH4>Heading 4</TypographyH4>
+                </div>
+                <div className="space-y-2">
+                  <TypographyLead>
+                    A lead paragraph stands out from regular text.
+                  </TypographyLead>
+                  <TypographyP>
+                    The king, seeing how much happier his subjects were, realized the error of his ways.
+                  </TypographyP>
+                  <TypographyMuted>
+                    This is muted text for secondary information.
+                  </TypographyMuted>
+                </div>
+                <TypographyBlockquote>
+                  &ldquo;After all,&rdquo; he said, &ldquo;everyone deserves a second chance.&rdquo;
+                </TypographyBlockquote>
+                <div className="flex flex-wrap gap-4">
+                  <TypographyLarge>Large</TypographyLarge>
+                  <TypographySmall>Small</TypographySmall>
+                  <TypographyInlineCode>inline code</TypographyInlineCode>
+                </div>
+              </div>
             </ComponentCard>
           </div>
         </main>

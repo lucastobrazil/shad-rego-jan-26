@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "empty",
+  "type": "registry:ui",
+  "title": "Empty",
+  "description": "Empty state placeholder for when there is no data to display.",
+  "dependencies": [],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/vitality/ui/empty.tsx",
+      "content": "import * as React from \"react\"\n\nimport { cn } from \"@/lib/utils\"\n\nconst Empty = React.forwardRef<\n  HTMLDivElement,\n  React.ComponentProps<\"div\">\n>(({ className, ...props }, ref) => (\n  <div\n    ref={ref}\n    className={cn(\n      \"flex min-h-[400px] flex-col items-center justify-center rounded-md border border-dashed p-8 text-center animate-in fade-in-50\",\n      className\n    )}\n    {...props}\n  />\n))\nEmpty.displayName = \"Empty\"\n\nconst EmptyIcon = React.forwardRef<\n  HTMLDivElement,\n  React.ComponentProps<\"div\">\n>(({ className, ...props }, ref) => (\n  <div\n    ref={ref}\n    className={cn(\n      \"flex h-20 w-20 items-center justify-center rounded-full bg-muted\",\n      className\n    )}\n    {...props}\n  />\n))\nEmptyIcon.displayName = \"EmptyIcon\"\n\nconst EmptyTitle = React.forwardRef<\n  HTMLHeadingElement,\n  React.ComponentProps<\"h3\">\n>(({ className, ...props }, ref) => (\n  <h3\n    ref={ref}\n    className={cn(\"mt-4 text-lg font-semibold\", className)}\n    {...props}\n  />\n))\nEmptyTitle.displayName = \"EmptyTitle\"\n\nconst EmptyDescription = React.forwardRef<\n  HTMLParagraphElement,\n  React.ComponentProps<\"p\">\n>(({ className, ...props }, ref) => (\n  <p\n    ref={ref}\n    className={cn(\n      \"mb-4 mt-2 text-sm text-muted-foreground\",\n      className\n    )}\n    {...props}\n  />\n))\nEmptyDescription.displayName = \"EmptyDescription\"\n\nexport { Empty, EmptyIcon, EmptyTitle, EmptyDescription }\n",
+      "type": "registry:ui"
+    }
+  ]
+}

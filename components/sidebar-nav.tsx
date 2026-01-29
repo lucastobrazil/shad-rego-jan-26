@@ -22,9 +22,11 @@ export const components: { name: string; isOfficial: boolean }[] = [
   { name: "Dialog", isOfficial: true },
   { name: "Drawer", isOfficial: false },
   { name: "Dropdown Menu", isOfficial: true },
+  { name: "Empty", isOfficial: false },
   { name: "Hover Card", isOfficial: false },
   { name: "Input", isOfficial: true },
   { name: "Input OTP", isOfficial: false },
+  { name: "Kbd", isOfficial: false },
   { name: "Label", isOfficial: true },
   { name: "Menubar", isOfficial: false },
   { name: "Navigation Menu", isOfficial: false },
@@ -49,6 +51,7 @@ export const components: { name: string; isOfficial: boolean }[] = [
   { name: "Toggle", isOfficial: false },
   { name: "Toggle Group", isOfficial: false },
   { name: "Tooltip", isOfficial: true },
+  { name: "Typography", isOfficial: false },
 ];
 
 export function SidebarNav() {
