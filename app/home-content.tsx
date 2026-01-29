@@ -232,7 +232,8 @@ import {
   TypographySmall,
   TypographyMuted,
 } from "@/registry/vitality/ui/typography";
-import { SidebarNav, components } from "@/components/sidebar-nav";
+import { Header } from "@/registry/vitality/blocks/header";
+import { SidebarNav, components, blocks } from "@/components/sidebar-nav";
 
 const REGISTRY_URL = "https://lucastobrazil.github.io/shad-rego-jan-26";
 
@@ -264,6 +265,12 @@ function getIsOfficial(title: string): boolean {
   return component?.isOfficial ?? false;
 }
 
+// Helper to look up isOfficial status by block title
+function getBlockIsOfficial(title: string): boolean {
+  const block = blocks.find((b) => b.name === title);
+  return block?.isOfficial ?? false;
+}
+
 function ComponentCard({
   id,
   title,
@@ -285,6 +292,48 @@ function ComponentCard({
       <CardHeader>
         <div className="flex items-center gap-2">
           <CardTitle>{title}</CardTitle>
+          {isOfficial && <Badge variant="neutral">Vitality</Badge>}
+        </div>
+        <CardDescription>{description}</CardDescription>
+      </CardHeader>
+      <CardContent className="space-y-4">
+        {children}
+        <div className="mt-4 pt-4 border-t">
+          <p className="text-xs text-muted-foreground mb-2">Install</p>
+          <div className="flex items-center gap-2 bg-muted px-3 py-2 rounded-md">
+            <code className="text-xs font-mono overflow-x-auto flex-1">
+              {installCommand}
+            </code>
+            <CopyButton text={installCommand} />
+          </div>
+        </div>
+      </CardContent>
+    </Card>
+  );
+}
+
+function BlockCard({
+  id,
+  title,
+  description,
+  blockName,
+  children,
+}: {
+  id: string;
+  title: string;
+  description: string;
+  blockName: string;
+  children: React.ReactNode;
+}) {
+  const installCommand = `npx shadcn@latest add ${REGISTRY_URL}/r/${blockName}.json`;
+  const isOfficial = getBlockIsOfficial(title);
+
+  return (
+    <Card id={id} className="scroll-mt-20">
+      <CardHeader>
+        <div className="flex items-center gap-2">
+          <CardTitle>{title}</CardTitle>
+          <Badge>Block</Badge>
           {isOfficial && <Badge variant="neutral">Vitality</Badge>}
         </div>
         <CardDescription>{description}</CardDescription>
@@ -1562,6 +1611,34 @@ export default function HomeContent({ globalsCss }: { globalsCss: string }) {
                 </div>
               </div>
             </ComponentCard>
+
+            {/* Blocks Section */}
+            <div className="mt-12 mb-8">
+              <h2 className="text-2xl font-bold">Blocks</h2>
+              <p className="text-muted-foreground">
+                Pre-built, composed components for common UI patterns.
+              </p>
+            </div>
+
+            {/* Header Block */}
+            <BlockCard
+              id="header"
+              title="Header"
+              description="A responsive header with navigation and mobile menu."
+              blockName="header"
+            >
+              <div className="border rounded-lg overflow-hidden">
+                <Header
+                  logo={<span className="font-bold text-lg">Gentu</span>}
+                  searchPlaceholder="Search..."
+                  user={{
+                    name: "John Doe",
+                    email: "john@example.com",
+                    avatarFallback: "JD",
+                  }}
+                />
+              </div>
+            </BlockCard>
           </div>
         </main>
       </div>
