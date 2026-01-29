@@ -318,18 +318,20 @@ function BlockCard({
   description,
   blockName,
   children,
+  className,
 }: {
   id: string;
   title: string;
   description: string;
   blockName: string;
   children: React.ReactNode;
+  className?: string;
 }) {
   const installCommand = `npx shadcn@latest add ${REGISTRY_URL}/r/${blockName}.json`;
   const isOfficial = getBlockIsOfficial(title);
 
   return (
-    <Card id={id} className="scroll-mt-20">
+    <Card id={id} className={`scroll-mt-20 ${className}`}>
       <CardHeader>
         <div className="flex items-center gap-2">
           <CardTitle>{title}</CardTitle>
@@ -1626,10 +1628,10 @@ export default function HomeContent({ globalsCss }: { globalsCss: string }) {
               title="Header"
               description="A responsive header with navigation and mobile menu."
               blockName="header"
+              className="min-w-[1000px]"
             >
               <div className="border rounded-lg overflow-hidden">
                 <Header
-                  logo={<span className="font-bold text-lg">Gentu</span>}
                   searchPlaceholder="Search..."
                   user={{
                     name: "John Doe",
