@@ -1637,6 +1637,7 @@ export default function HomeContent({ globalsCss }: { globalsCss: string }) {
                     avatarFallback: "JD",
                   }}
                 />
+                <div className="h-[400px] border border-t-0" />
               </div>
             </BlockCard>
           </div>

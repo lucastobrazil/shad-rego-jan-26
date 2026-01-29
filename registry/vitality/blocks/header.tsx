@@ -72,13 +72,14 @@ function Header({
         {logo && <div className="flex items-center shrink-0">{logo}</div>}
         {/* Search - centered */}
         <div className="relative flex-1 flex justify-center">
-          <div className="relative w-full max-w-[480px]">
-            <div className="bg-muted focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] border rounded-xl text-center gap-sm flex justify-center items-center">
+          <div className="relative w-full max-w-[380px]">
+            <div className="bg-muted focus-visible:bg-background focus-within:border-ring focus-within:ring-ring/50 focus-within:ring-[3px] border rounded-xl text-center gap-sm flex justify-center items-center p-1">
               <Search className="text-muted-foreground pointer-events-none" />
               <Input
                 type="search"
                 placeholder={searchPlaceholder}
-                className="border-none max-w-fit px-1 focus:max-w-[480px] focus:ring-none bg-transparent"
+                size={8}
+                className="border-none focus-visible:ring-0 max-w-fit px-1 focus:max-w-[380px] bg-transparent"
                 onChange={(e) => onSearch?.(e.target.value)}
               />
             </div>
