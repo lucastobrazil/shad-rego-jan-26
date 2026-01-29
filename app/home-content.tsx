@@ -376,7 +376,7 @@ export default function HomeContent({ globalsCss }: { globalsCss: string }) {
 
         {/* Main Content */}
         <main className="ml-64 flex-1 p-8">
-          <div className="max-w-4xl mx-auto space-y-8">
+          <div className="max-w-5xl mx-auto space-y-8">
             <div className="mb-12">
               <h1 className="text-4xl font-bold mb-2">
                 Vitality Component Registry
@@ -1628,15 +1628,14 @@ export default function HomeContent({ globalsCss }: { globalsCss: string }) {
               title="Header"
               description="A responsive header with navigation and mobile menu."
               blockName="header"
-              className="min-w-[1000px]"
+              // className="min-w-[1000px]"
             >
               <div className="border rounded-lg overflow-hidden">
                 <Header
-                  searchPlaceholder="Search..."
                   user={{
-                    name: "John Doe",
+                    name: "Andrew Demo",
                     email: "john@example.com",
-                    avatarFallback: "JD",
+                    avatarFallback: "AD",
                   }}
                 />
                 <div className="h-[400px] border border-t-0" />

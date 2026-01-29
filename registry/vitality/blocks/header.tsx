@@ -102,7 +102,7 @@ export function GentuLogo() {
 function Header({
   className,
   logo = <GentuLogo />,
-  searchPlaceholder = "Search...",
+  searchPlaceholder = "Search",
   onSearch,
   actions,
   user,
@@ -124,12 +124,12 @@ function Header({
       )}
       {...props}
     >
-      <div className="container flex items-center gap-4 py-2 px-3">
+      <div className="container flex items-center gap-4 h-[48px] px-3">
         {logo && <div className="flex items-center shrink-0">{logo}</div>}
         {/* Search - centered */}
         <div className="relative flex-1 flex justify-center">
           <div className="relative w-full max-w-[380px]">
-            <div className="bg-muted focus-visible:bg-background focus-within:border-ring focus-within:ring-ring/50 focus-within:ring-[3px] border rounded-xl text-center gap-sm flex justify-center items-center p-1">
+            <div className="bg-muted focus-visible:bg-background focus-within:border-ring focus-within:ring-ring/50 focus-within:ring-[3px] border rounded-xl text-center gap-sm flex justify-center items-center px-1 h-[38px]">
               <Search className="text-muted-foreground pointer-events-none" />
               <Input
                 type="search"
@@ -166,7 +166,7 @@ function Header({
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <button className="rounded-full focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2">
-                  <Avatar size="md">
+                  <Avatar size="lg">
                     {user.avatarSrc && (
                       <AvatarImage src={user.avatarSrc} alt={user.name} />
                     )}
