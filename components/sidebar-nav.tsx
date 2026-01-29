@@ -66,7 +66,7 @@ export function SidebarNav() {
             className="flex items-center justify-between px-3 py-2 text-sm rounded-md hover:bg-muted transition-colors"
           >
             {name}
-            {isOfficial && <Badge variant="neutral">Official</Badge>}
+            {isOfficial && <Badge variant="neutral">Vitality</Badge>}
           </a>
         ))}
       </nav>

@@ -202,7 +202,10 @@ import {
 } from "@/registry/vitality/ui/tabs";
 import { Textarea } from "@/registry/vitality/ui/textarea";
 import { Toggle } from "@/registry/vitality/ui/toggle";
-import { ToggleGroup, ToggleGroupItem } from "@/registry/vitality/ui/toggle-group";
+import {
+  ToggleGroup,
+  ToggleGroupItem,
+} from "@/registry/vitality/ui/toggle-group";
 import {
   Tooltip,
   TooltipContent,
@@ -282,7 +285,7 @@ function ComponentCard({
       <CardHeader>
         <div className="flex items-center gap-2">
           <CardTitle>{title}</CardTitle>
-          {isOfficial && <Badge variant="neutral">Official</Badge>}
+          {isOfficial && <Badge variant="neutral">Vitality</Badge>}
         </div>
         <CardDescription>{description}</CardDescription>
       </CardHeader>
@@ -338,7 +341,7 @@ export default function HomeContent({ globalsCss }: { globalsCss: string }) {
               <CardHeader>
                 <div className="flex items-center gap-2">
                   <CardTitle>Theming</CardTitle>
-                  <Badge variant="neutral">Official</Badge>
+                  <Badge variant="neutral">Vitality</Badge>
                 </div>
                 <CardDescription>
                   Add these CSS variables to your globals.css file to use the
@@ -374,13 +377,15 @@ export default function HomeContent({ globalsCss }: { globalsCss: string }) {
                 <AccordionItem value="item-2">
                   <AccordionTrigger>Is it styled?</AccordionTrigger>
                   <AccordionContent>
-                    Yes. It comes with default styles that match the other components.
+                    Yes. It comes with default styles that match the other
+                    components.
                   </AccordionContent>
                 </AccordionItem>
                 <AccordionItem value="item-3">
                   <AccordionTrigger>Is it animated?</AccordionTrigger>
                   <AccordionContent>
-                    Yes. It&apos;s animated by default, but you can disable it if you prefer.
+                    Yes. It&apos;s animated by default, but you can disable it
+                    if you prefer.
                   </AccordionContent>
                 </AccordionItem>
               </Accordion>
@@ -394,7 +399,10 @@ export default function HomeContent({ globalsCss }: { globalsCss: string }) {
               componentName="aspect-ratio"
             >
               <div className="w-[450px]">
-                <AspectRatio ratio={16 / 9} className="bg-muted rounded-md flex items-center justify-center">
+                <AspectRatio
+                  ratio={16 / 9}
+                  className="bg-muted rounded-md flex items-center justify-center"
+                >
                   <span className="text-muted-foreground">16:9</span>
                 </AspectRatio>
               </div>
@@ -614,7 +622,9 @@ export default function HomeContent({ globalsCss }: { globalsCss: string }) {
                         <div className="p-1">
                           <Card>
                             <CardContent className="flex aspect-square items-center justify-center p-6">
-                              <span className="text-4xl font-semibold">{index + 1}</span>
+                              <span className="text-4xl font-semibold">
+                                {index + 1}
+                              </span>
                             </CardContent>
                           </Card>
                         </div>
@@ -655,7 +665,9 @@ export default function HomeContent({ globalsCss }: { globalsCss: string }) {
             >
               <Collapsible className="w-[350px] space-y-2">
                 <div className="flex items-center justify-between space-x-4 px-4">
-                  <h4 className="text-sm font-semibold">@peduarte starred 3 repositories</h4>
+                  <h4 className="text-sm font-semibold">
+                    @peduarte starred 3 repositories
+                  </h4>
                   <CollapsibleTrigger asChild>
                     <Button variant="ghost" size="sm" className="w-9 p-0">
                       <ChevronsUpDown className="h-4 w-4" />
@@ -687,6 +699,7 @@ export default function HomeContent({ globalsCss }: { globalsCss: string }) {
               <Command className="rounded-lg border shadow-md">
                 <CommandInput placeholder="Type a command or search..." />
                 <CommandList>
+                  <CommandItem value="-" className="hidden" />
                   <CommandEmpty>No results found.</CommandEmpty>
                   <CommandGroup heading="Suggestions">
                     <CommandItem>
@@ -781,7 +794,9 @@ export default function HomeContent({ globalsCss }: { globalsCss: string }) {
                 <DrawerContent>
                   <DrawerHeader>
                     <DrawerTitle>Are you sure?</DrawerTitle>
-                    <DrawerDescription>This action cannot be undone.</DrawerDescription>
+                    <DrawerDescription>
+                      This action cannot be undone.
+                    </DrawerDescription>
                   </DrawerHeader>
                   <DrawerFooter>
                     <Button>Submit</Button>
@@ -981,15 +996,20 @@ export default function HomeContent({ globalsCss }: { globalsCss: string }) {
               <NavigationMenu>
                 <NavigationMenuList>
                   <NavigationMenuItem>
-                    <NavigationMenuTrigger>Getting started</NavigationMenuTrigger>
+                    <NavigationMenuTrigger>
+                      Getting started
+                    </NavigationMenuTrigger>
                     <NavigationMenuContent>
                       <ul className="grid gap-3 p-4 w-[400px]">
                         <li>
                           <NavigationMenuLink asChild>
                             <a className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
-                              <div className="text-sm font-medium leading-none">Introduction</div>
+                              <div className="text-sm font-medium leading-none">
+                                Introduction
+                              </div>
                               <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-                                Re-usable components built with Radix UI and Tailwind CSS.
+                                Re-usable components built with Radix UI and
+                                Tailwind CSS.
                               </p>
                             </a>
                           </NavigationMenuLink>
@@ -1004,7 +1024,9 @@ export default function HomeContent({ globalsCss }: { globalsCss: string }) {
                         <li>
                           <NavigationMenuLink asChild>
                             <a className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
-                              <div className="text-sm font-medium leading-none">Alert Dialog</div>
+                              <div className="text-sm font-medium leading-none">
+                                Alert Dialog
+                              </div>
                               <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
                                 A modal dialog that interrupts the user.
                               </p>
@@ -1031,13 +1053,19 @@ export default function HomeContent({ globalsCss }: { globalsCss: string }) {
                     <PaginationPrevious href="#" size="default" />
                   </PaginationItem>
                   <PaginationItem>
-                    <PaginationLink href="#" size="default">1</PaginationLink>
+                    <PaginationLink href="#" size="default">
+                      1
+                    </PaginationLink>
                   </PaginationItem>
                   <PaginationItem>
-                    <PaginationLink href="#" size="default" isActive>2</PaginationLink>
+                    <PaginationLink href="#" size="default" isActive>
+                      2
+                    </PaginationLink>
                   </PaginationItem>
                   <PaginationItem>
-                    <PaginationLink href="#" size="default">3</PaginationLink>
+                    <PaginationLink href="#" size="default">
+                      3
+                    </PaginationLink>
                   </PaginationItem>
                   <PaginationItem>
                     <PaginationEllipsis />
@@ -1142,7 +1170,9 @@ export default function HomeContent({ globalsCss }: { globalsCss: string }) {
             >
               <ScrollArea className="h-72 w-48 rounded-md border">
                 <div className="p-4">
-                  <h4 className="mb-4 text-sm font-medium leading-none">Tags</h4>
+                  <h4 className="mb-4 text-sm font-medium leading-none">
+                    Tags
+                  </h4>
                   {Array.from({ length: 50 }).map((_, i) => (
                     <div key={i} className="text-sm py-1">
                       Tag {i + 1}
@@ -1205,7 +1235,8 @@ export default function HomeContent({ globalsCss }: { globalsCss: string }) {
                   <SheetHeader>
                     <SheetTitle>Edit profile</SheetTitle>
                     <SheetDescription>
-                      Make changes to your profile here. Click save when you&apos;re done.
+                      Make changes to your profile here. Click save when
+                      you&apos;re done.
                     </SheetDescription>
                   </SheetHeader>
                   <div className="py-4">
@@ -1216,7 +1247,10 @@ export default function HomeContent({ globalsCss }: { globalsCss: string }) {
                       </div>
                       <div className="space-y-2">
                         <Label htmlFor="username">Username</Label>
-                        <Input id="username" placeholder="Enter your username" />
+                        <Input
+                          id="username"
+                          placeholder="Enter your username"
+                        />
                       </div>
                     </div>
                   </div>
@@ -1465,7 +1499,10 @@ export default function HomeContent({ globalsCss }: { globalsCss: string }) {
                 <ToggleGroupItem value="italic" aria-label="Toggle italic">
                   <Italic className="h-4 w-4" />
                 </ToggleGroupItem>
-                <ToggleGroupItem value="underline" aria-label="Toggle underline">
+                <ToggleGroupItem
+                  value="underline"
+                  aria-label="Toggle underline"
+                >
                   <Underline className="h-4 w-4" />
                 </ToggleGroupItem>
               </ToggleGroup>
@@ -1507,14 +1544,16 @@ export default function HomeContent({ globalsCss }: { globalsCss: string }) {
                     A lead paragraph stands out from regular text.
                   </TypographyLead>
                   <TypographyP>
-                    The king, seeing how much happier his subjects were, realized the error of his ways.
+                    The king, seeing how much happier his subjects were,
+                    realized the error of his ways.
                   </TypographyP>
                   <TypographyMuted>
                     This is muted text for secondary information.
                   </TypographyMuted>
                 </div>
                 <TypographyBlockquote>
-                  &ldquo;After all,&rdquo; he said, &ldquo;everyone deserves a second chance.&rdquo;
+                  &ldquo;After all,&rdquo; he said, &ldquo;everyone deserves a
+                  second chance.&rdquo;
                 </TypographyBlockquote>
                 <div className="flex flex-wrap gap-4">
                   <TypographyLarge>Large</TypographyLarge>
