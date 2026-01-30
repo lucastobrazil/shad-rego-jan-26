@@ -233,6 +233,7 @@ import {
   TypographyMuted,
 } from "@/registry/vitality/ui/typography";
 import { Header } from "@/registry/vitality/blocks/header";
+import { SideNav } from "@/registry/vitality/blocks/side-nav";
 import { SidebarNav, components, blocks } from "@/components/sidebar-nav";
 
 const REGISTRY_URL = "https://lucastobrazil.github.io/shad-rego-jan-26";
@@ -340,7 +341,7 @@ function BlockCard({
         </div>
         <CardDescription>{description}</CardDescription>
       </CardHeader>
-      <CardContent className="space-y-4">
+      <CardContent>
         {children}
         <div className="mt-4 pt-4 border-t">
           <p className="text-xs text-muted-foreground mb-2">Install</p>
@@ -375,7 +376,7 @@ export default function HomeContent({ globalsCss }: { globalsCss: string }) {
         <SidebarNav />
 
         {/* Main Content */}
-        <main className="ml-64 flex-1 p-8">
+        <main className="flex-1 p-4 pt-16 lg:ml-64 lg:p-8 lg:pt-8">
           <div className="max-w-5xl mx-auto space-y-8">
             <div className="mb-12">
               <h1 className="text-4xl font-bold mb-2">
@@ -449,7 +450,7 @@ export default function HomeContent({ globalsCss }: { globalsCss: string }) {
               description="Displays content within a desired ratio."
               componentName="aspect-ratio"
             >
-              <div className="w-[450px]">
+              <div className="w-full max-w-[450px]">
                 <AspectRatio
                   ratio={16 / 9}
                   className="bg-muted rounded-md flex items-center justify-center"
@@ -640,7 +641,7 @@ export default function HomeContent({ globalsCss }: { globalsCss: string }) {
               description="Displays a card with header, content, and footer."
               componentName="card"
             >
-              <Card className="w-[350px]">
+              <Card className="w-full max-w-[350px]">
                 <CardHeader>
                   <CardTitle>Create project</CardTitle>
                   <CardDescription>
@@ -714,7 +715,7 @@ export default function HomeContent({ globalsCss }: { globalsCss: string }) {
               description="An interactive component which expands/collapses a panel."
               componentName="collapsible"
             >
-              <Collapsible className="w-[350px] space-y-2">
+              <Collapsible className="w-full max-w-[350px] space-y-2">
                 <div className="flex items-center justify-between space-x-4 px-4">
                   <h4 className="text-sm font-semibold">
                     @peduarte starred 3 repositories
@@ -793,7 +794,7 @@ export default function HomeContent({ globalsCss }: { globalsCss: string }) {
               componentName="context-menu"
             >
               <ContextMenu>
-                <ContextMenuTrigger className="flex h-[150px] w-[300px] items-center justify-center rounded-md border border-dashed text-sm">
+                <ContextMenuTrigger className="flex h-[150px] w-full max-w-[300px] items-center justify-center rounded-md border border-dashed text-sm">
                   Right click here
                 </ContextMenuTrigger>
                 <ContextMenuContent className="w-64">
@@ -1051,7 +1052,7 @@ export default function HomeContent({ globalsCss }: { globalsCss: string }) {
                       Getting started
                     </NavigationMenuTrigger>
                     <NavigationMenuContent>
-                      <ul className="grid gap-3 p-4 w-[400px]">
+                      <ul className="grid gap-3 p-4 w-[min(400px,80vw)]">
                         <li>
                           <NavigationMenuLink asChild>
                             <a className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
@@ -1071,7 +1072,7 @@ export default function HomeContent({ globalsCss }: { globalsCss: string }) {
                   <NavigationMenuItem>
                     <NavigationMenuTrigger>Components</NavigationMenuTrigger>
                     <NavigationMenuContent>
-                      <ul className="grid gap-3 p-4 w-[400px]">
+                      <ul className="grid gap-3 p-4 w-[min(400px,80vw)]">
                         <li>
                           <NavigationMenuLink asChild>
                             <a className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
@@ -1319,8 +1320,8 @@ export default function HomeContent({ globalsCss }: { globalsCss: string }) {
               <div className="flex items-center space-x-4">
                 <Skeleton className="h-12 w-12 rounded-full" />
                 <div className="space-y-2">
-                  <Skeleton className="h-4 w-[250px]" />
-                  <Skeleton className="h-4 w-[200px]" />
+                  <Skeleton className="h-4 w-full max-w-[250px]" />
+                  <Skeleton className="h-4 w-full max-w-[200px]" />
                 </div>
               </div>
             </ComponentCard>
@@ -1480,7 +1481,7 @@ export default function HomeContent({ globalsCss }: { globalsCss: string }) {
               description="A set of layered sections of content displayed one at a time."
               componentName="tabs"
             >
-              <Tabs defaultValue="account" className="w-[400px]">
+              <Tabs defaultValue="account" className="w-full max-w-[400px]">
                 <TabsList>
                   <TabsTrigger value="account">Account</TabsTrigger>
                   <TabsTrigger value="password">Password</TabsTrigger>
@@ -1639,6 +1640,22 @@ export default function HomeContent({ globalsCss }: { globalsCss: string }) {
                   }}
                 />
                 <div className="h-[400px] border border-t-0" />
+              </div>
+            </BlockCard>
+
+            {/* Side Nav Block */}
+            <BlockCard
+              id="side-nav"
+              title="Side Nav"
+              description="A collapsible sidebar navigation with icon and text items. Note that this demo includes the header component too."
+              blockName="side-nav"
+            >
+              <Header />
+              <div className="border rounded-lg overflow-hidden flex">
+                <SideNav defaultExpanded={true} className="h-[500px]" />
+                <div className="flex-1 h-auto bg-muted/30 flex items-center justify-center">
+                  <p className="text-muted-foreground">Main content area</p>
+                </div>
               </div>
             </BlockCard>
           </div>

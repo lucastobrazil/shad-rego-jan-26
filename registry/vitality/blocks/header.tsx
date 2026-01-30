@@ -99,18 +99,24 @@ export function GentuLogo() {
   );
 }
 
+const defaultUser = {
+  name: "Andrew Demo",
+  email: "john@example.com",
+  avatarFallback: "AD",
+};
+
 function Header({
   className,
   logo = <GentuLogo />,
   searchPlaceholder = "Search",
   onSearch,
   actions,
-  user,
+  user = defaultUser,
   ...props
 }: HeaderProps) {
   const defaultUserMenuItems: HeaderUserMenuItem[] = [
-    { label: "Profile", icon: <User className="h-4 w-4" /> },
-    { label: "Settings", icon: <Settings className="h-4 w-4" /> },
+    { label: "Account Settings", icon: <Settings className="h-4 w-4" /> },
+    { label: "Log out", icon: <LogOut className="h-4 w-4" /> },
   ];
 
   const userMenuItems: HeaderUserMenuItem[] =
@@ -177,17 +183,6 @@ function Header({
                 </button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end">
-                <DropdownMenuLabel>
-                  <div className="flex flex-col space-y-1">
-                    <p className="text-sm font-medium">{user.name}</p>
-                    {user.email && (
-                      <p className="text-xs text-muted-foreground">
-                        {user.email}
-                      </p>
-                    )}
-                  </div>
-                </DropdownMenuLabel>
-                <DropdownMenuSeparator />
                 {userMenuItems.map((item, index) => (
                   <DropdownMenuItem
                     key={index}
@@ -207,11 +202,6 @@ function Header({
                     )}
                   </DropdownMenuItem>
                 ))}
-                <DropdownMenuSeparator />
-                <DropdownMenuItem>
-                  <LogOut className="h-4 w-4" />
-                  Log out
-                </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
           )}

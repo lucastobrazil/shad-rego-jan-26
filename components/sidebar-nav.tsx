@@ -1,10 +1,19 @@
 "use client";
 
+import * as React from "react";
+import { Menu } from "lucide-react";
 import { Badge } from "@/registry/vitality/ui/badge";
+import { Button } from "@/registry/vitality/ui/button";
 import { Separator } from "@/registry/vitality/ui/separator";
+import {
+  Sheet,
+  SheetContent,
+  SheetTrigger,
+} from "@/registry/vitality/ui/sheet";
 
 export const blocks: { name: string; isOfficial: boolean }[] = [
   { name: "Header", isOfficial: false },
+  { name: "Side Nav", isOfficial: false },
 ];
 
 export const components: {
@@ -89,15 +98,16 @@ export const components: {
   { name: "Vitality Provider", isOfficial: true, notYet: true },
 ];
 
-export function SidebarNav() {
+function NavContent({ onLinkClick }: { onLinkClick?: () => void }) {
   return (
-    <aside className="fixed left-0 top-0 h-screen w-64 border-r bg-background p-6 overflow-y-auto">
+    <>
       <h2 className="text-lg font-semibold mb-4">Components</h2>
       <nav className="space-y-1">
         {components.map(({ name, isOfficial, notYet }) => (
           <a
             key={name}
             href={`#${name.toLowerCase().replace(/\s+/g, "-")}`}
+            onClick={onLinkClick}
             className="flex items-center justify-between px-3 py-2 text-sm rounded-md hover:bg-muted transition-colors"
           >
             <span className={notYet ? "text-muted-foreground" : ""}>
@@ -117,6 +127,7 @@ export function SidebarNav() {
           <a
             key={name}
             href={`#${name.toLowerCase().replace(/\s+/g, "-")}`}
+            onClick={onLinkClick}
             className="flex items-center justify-between px-3 py-2 text-sm rounded-md hover:bg-muted transition-colors"
           >
             {name}
@@ -130,6 +141,34 @@ export function SidebarNav() {
         <kbd className="px-1.5 py-0.5 bg-muted rounded text-xs">Shift+C</kbd> to
         toggle theme
       </p>
-    </aside>
+    </>
+  );
+}
+
+export function SidebarNav() {
+  const [open, setOpen] = React.useState(false);
+
+  return (
+    <>
+      {/* Mobile hamburger button */}
+      <div className="fixed top-4 left-4 z-50 lg:hidden">
+        <Sheet open={open} onOpenChange={setOpen}>
+          <SheetTrigger asChild>
+            <Button variant="ghost" size="sm" className="h-10 w-10 p-0">
+              <Menu className="h-5 w-5" />
+              <span className="sr-only">Toggle navigation</span>
+            </Button>
+          </SheetTrigger>
+          <SheetContent side="left" className="w-64 p-6 overflow-y-auto">
+            <NavContent onLinkClick={() => setOpen(false)} />
+          </SheetContent>
+        </Sheet>
+      </div>
+
+      {/* Desktop sidebar - hidden on mobile */}
+      <aside className="fixed left-0 top-0 h-screen w-64 border-r bg-background p-6 overflow-y-auto hidden lg:block">
+        <NavContent />
+      </aside>
+    </>
   );
 }
