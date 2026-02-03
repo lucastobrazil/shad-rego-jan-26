@@ -3,6 +3,7 @@
 import * as React from "react";
 import { toast } from "sonner";
 import { ThemeToggle } from "@/components/theme-toggle";
+import { CommandMenu } from "@/components/command-menu";
 import {
   AlertCircle,
   Bold,
@@ -21,6 +22,12 @@ import {
   Settings,
   Smile,
   User,
+  Search,
+  Mail,
+  DollarSign,
+  Eye,
+  EyeOff,
+  MoreHorizontalIcon,
 } from "lucide-react";
 
 import {
@@ -45,7 +52,14 @@ import {
   BreadcrumbSeparator,
 } from "@/registry/vitality/ui/breadcrumb";
 import { Button } from "@/registry/vitality/ui/button";
+import { ButtonGroup } from "@/registry/vitality/ui/button-group";
 import { Calendar } from "@/registry/vitality/ui/calendar";
+import {
+  DatePicker,
+  DateRangePicker,
+  DatePickerWithPresets,
+} from "@/registry/vitality/ui/date-picker";
+import { type DateRange } from "react-day-picker";
 import {
   Carousel,
   CarouselContent,
@@ -121,6 +135,13 @@ import {
 } from "@/registry/vitality/ui/hover-card";
 import { Input } from "@/registry/vitality/ui/input";
 import {
+  InputGroup,
+  InputGroupAddon,
+  InputGroupButton,
+  InputGroupText,
+  InputGroupInput,
+} from "@/registry/vitality/ui/input-group";
+import {
   InputOTP,
   InputOTPGroup,
   InputOTPSeparator,
@@ -175,8 +196,10 @@ import {
 import { Separator } from "@/registry/vitality/ui/separator";
 import {
   Sheet,
+  SheetClose,
   SheetContent,
   SheetDescription,
+  SheetFooter,
   SheetHeader,
   SheetTitle,
   SheetTrigger,
@@ -293,7 +316,7 @@ function ComponentCard({
       <CardHeader>
         <div className="flex items-center gap-2">
           <CardTitle>{title}</CardTitle>
-          {isOfficial && <Badge variant="neutral">Vitality</Badge>}
+          {isOfficial && <Badge>Vitality</Badge>}
         </div>
         <CardDescription>{description}</CardDescription>
       </CardHeader>
@@ -337,7 +360,7 @@ function BlockCard({
         <div className="flex items-center gap-2">
           <CardTitle>{title}</CardTitle>
           <Badge>Block</Badge>
-          {isOfficial && <Badge variant="neutral">Vitality</Badge>}
+          {isOfficial && <Badge>Vitality</Badge>}
         </div>
         <CardDescription>{description}</CardDescription>
       </CardHeader>
@@ -359,6 +382,9 @@ function BlockCard({
 
 export default function HomeContent({ globalsCss }: { globalsCss: string }) {
   const [date, setDate] = React.useState<Date | undefined>(new Date());
+  const [pickerDate, setPickerDate] = React.useState<Date | undefined>();
+  const [dateRange, setDateRange] = React.useState<DateRange | undefined>();
+  const [presetDate, setPresetDate] = React.useState<Date | undefined>();
   const [progress, setProgress] = React.useState(33);
   const [airplaneMode, setAirplaneMode] = React.useState(false);
   const [notifications, setNotifications] = React.useState(true);
@@ -372,6 +398,7 @@ export default function HomeContent({ globalsCss }: { globalsCss: string }) {
     <TooltipProvider>
       <div className="flex min-h-screen">
         <ThemeToggle />
+        <CommandMenu />
 
         <SidebarNav />
 
@@ -388,12 +415,93 @@ export default function HomeContent({ globalsCss }: { globalsCss: string }) {
               </p>
             </div>
 
+            {/* Getting Started */}
+            <Card id="getting-started" className="scroll-mt-20">
+              <CardHeader>
+                <CardTitle>Getting Started</CardTitle>
+                <CardDescription>
+                  Pull components into your project and optionally wrap them
+                  with your own conventions.
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-6">
+                <div className="space-y-3">
+                  <h4 className="font-medium">1. Install a component</h4>
+                  <p className="text-sm text-muted-foreground">
+                    Components are installed directly into your codebase using
+                    the shadcn CLI. You own the code.
+                  </p>
+                  <div className="flex items-center gap-2 bg-muted px-3 py-2 rounded-md">
+                    <code className="text-xs font-mono overflow-x-auto flex-1">
+                      npx shadcn@latest add {REGISTRY_URL}/r/button.json
+                    </code>
+                    <CopyButton
+                      text={`npx shadcn@latest add ${REGISTRY_URL}/r/button.json`}
+                    />
+                  </div>
+                </div>
+
+                <Separator />
+
+                <div className="space-y-3">
+                  <h4 className="font-medium">
+                    2. Use as-is or wrap with your own opinion
+                  </h4>
+                  <p className="text-sm text-muted-foreground">
+                    Registry components are intentionally thin. Teams can use
+                    them directly or create product-specific wrappers that
+                    enforce conventions.
+                  </p>
+                  <div className="grid gap-4 md:grid-cols-2">
+                    <div className="space-y-2">
+                      <p className="text-xs font-medium text-muted-foreground">
+                        Direct usage
+                      </p>
+                      <pre className="bg-muted p-3 rounded-md text-xs font-mono overflow-x-auto">
+                        <code>{`import { Button } from "@/components/ui/button"
+
+<Button variant="primary">Save</Button>`}</code>
+                      </pre>
+                    </div>
+                    <div className="space-y-2">
+                      <p className="text-xs font-medium text-muted-foreground">
+                        With a product wrapper
+                      </p>
+                      <pre className="bg-muted p-3 rounded-md text-xs font-mono overflow-x-auto">
+                        <code>{`// components/product/button.tsx
+import { Button as Base } from "@/components/ui/button"
+
+export function Button({ children, ...props }) {
+  // Add tracking, enforce variants, etc.
+  return <Base {...props}>{children}</Base>
+}`}</code>
+                      </pre>
+                    </div>
+                  </div>
+                </div>
+
+                <Separator />
+
+                <div className="space-y-3">
+                  <h4 className="font-medium">3. Apply the theme</h4>
+                  <p className="text-sm text-muted-foreground">
+                    Copy the CSS variables from the Theming section below into
+                    your{" "}
+                    <code className="text-xs bg-muted px-1 py-0.5 rounded">
+                      globals.css
+                    </code>{" "}
+                    to match the Vitality design language.
+                  </p>
+                </div>
+              </CardContent>
+            </Card>
+
             {/* Theming */}
             <Card id="theming" className="scroll-mt-20">
               <CardHeader>
                 <div className="flex items-center gap-2">
                   <CardTitle>Theming</CardTitle>
-                  <Badge variant="neutral">Vitality</Badge>
+                  <Badge>Vitality</Badge>
                 </div>
                 <CardDescription>
                   Add these CSS variables to your globals.css file to use the
@@ -491,10 +599,10 @@ export default function HomeContent({ globalsCss }: { globalsCss: string }) {
                 </div>
                 <div className="flex gap-4">
                   <Avatar variant="neutral">
-                    <AvatarFallback>N</AvatarFallback>
+                    <AvatarFallback variant="neutral">N</AvatarFallback>
                   </Avatar>
                   <Avatar variant="primary">
-                    <AvatarFallback>P</AvatarFallback>
+                    <AvatarFallback variant="primary">P</AvatarFallback>
                   </Avatar>
                 </div>
               </div>
@@ -551,6 +659,8 @@ export default function HomeContent({ globalsCss }: { globalsCss: string }) {
               <div className="flex flex-wrap gap-2">
                 <Button>Default</Button>
                 <Button variant="primary">Primary</Button>
+                <Button variant="outline">Outline</Button>
+                <Button variant="secondary">Secondary</Button>
                 <Button variant="ghost">Ghost</Button>
                 <Button variant="link">Link</Button>
                 <Button variant="destructive">Destructive</Button>
@@ -558,6 +668,76 @@ export default function HomeContent({ globalsCss }: { globalsCss: string }) {
               <div className="flex flex-wrap gap-2 mt-4">
                 <Button size="sm">Small</Button>
                 <Button size="default">Default</Button>
+              </div>
+              <div className="flex flex-wrap items-center gap-2 mt-4">
+                <Button size="icon-sm">
+                  <Settings className="size-4" />
+                </Button>
+                <Button size="icon">
+                  <Settings className="size-4" />
+                </Button>
+                <Button size="icon" variant="primary">
+                  <User className="size-4" />
+                </Button>
+                <Button size="icon-sm" variant="ghost">
+                  <Search className="size-4" />
+                </Button>
+              </div>
+            </ComponentCard>
+
+            {/* Button Group */}
+            <ComponentCard
+              id="button-group"
+              title="Button Group"
+              description="A container that groups related buttons together with consistent styling."
+              componentName="button-group"
+            >
+              <div className="space-y-4">
+                <div className="space-y-2">
+                  <p className="text-sm text-muted-foreground">Horizontal</p>
+                  <ButtonGroup>
+                    <Button>Left</Button>
+                    <Button>Center</Button>
+                    <Button>Right</Button>
+                  </ButtonGroup>
+                </div>
+                <div className="space-y-2">
+                  <p className="text-sm text-muted-foreground">With Primary</p>
+                  <ButtonGroup>
+                    <Button>Cancel</Button>
+                    <Button variant="primary">Save</Button>
+                  </ButtonGroup>
+                </div>
+                <div className="space-y-2">
+                  <p className="text-sm text-muted-foreground">Vertical</p>
+                  <ButtonGroup orientation="vertical" className="w-32">
+                    <Button>Top</Button>
+                    <Button>Middle</Button>
+                    <Button>Bottom</Button>
+                  </ButtonGroup>
+                </div>
+                <div className="space-y-2">
+                  <p className="text-sm text-muted-foreground">Dropdown</p>
+                  <ButtonGroup className="w-32">
+                    <Button>Snooze</Button>
+                    <DropdownMenu>
+                      <DropdownMenuTrigger asChild>
+                        <Button size="icon">
+                          <MoreHorizontalIcon />
+                        </Button>
+                      </DropdownMenuTrigger>
+                      <DropdownMenuContent>
+                        <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                        <DropdownMenuSeparator />
+                        <DropdownMenuItem>Profile</DropdownMenuItem>
+                        <DropdownMenuItem>Billing</DropdownMenuItem>
+                        <DropdownMenuItem>Settings</DropdownMenuItem>
+                        <DropdownMenuSeparator />
+                        <DropdownMenuItem>Log out</DropdownMenuItem>
+                      </DropdownMenuContent>
+                    </DropdownMenu>
+                  </ButtonGroup>
+                </div>
               </div>
             </ComponentCard>
 
@@ -574,6 +754,47 @@ export default function HomeContent({ globalsCss }: { globalsCss: string }) {
                 onSelect={setDate}
                 className="rounded-md border"
               />
+            </ComponentCard>
+
+            {/* Date Picker */}
+            <ComponentCard
+              id="date-picker"
+              title="Date Picker"
+              description="A date picker component with popover calendar."
+              componentName="date-picker"
+            >
+              <div className="space-y-4">
+                <div className="space-y-2">
+                  <p className="text-sm text-muted-foreground">Basic</p>
+                  <div className="max-w-[280px]">
+                    <DatePicker
+                      value={pickerDate}
+                      onChange={setPickerDate}
+                      placeholder="Select a date"
+                    />
+                  </div>
+                </div>
+                <div className="space-y-2">
+                  <p className="text-sm text-muted-foreground">Date Range</p>
+                  <div className="max-w-[320px]">
+                    <DateRangePicker
+                      value={dateRange}
+                      onChange={setDateRange}
+                      placeholder="Select date range"
+                    />
+                  </div>
+                </div>
+                <div className="space-y-2">
+                  <p className="text-sm text-muted-foreground">With Presets</p>
+                  <div className="max-w-[280px]">
+                    <DatePickerWithPresets
+                      value={presetDate}
+                      onChange={setPresetDate}
+                      placeholder="Pick a date"
+                    />
+                  </div>
+                </div>
+              </div>
             </ComponentCard>
 
             {/* Callout */}
@@ -836,28 +1057,94 @@ export default function HomeContent({ globalsCss }: { globalsCss: string }) {
             <ComponentCard
               id="drawer"
               title="Drawer"
-              description="A drawer component for React."
+              description="A drawer component with support for 4 directions: bottom (default), top, left, and right."
               componentName="drawer"
             >
-              <Drawer>
-                <DrawerTrigger asChild>
-                  <Button>Open Drawer</Button>
-                </DrawerTrigger>
-                <DrawerContent>
-                  <DrawerHeader>
-                    <DrawerTitle>Are you sure?</DrawerTitle>
-                    <DrawerDescription>
-                      This action cannot be undone.
-                    </DrawerDescription>
-                  </DrawerHeader>
-                  <DrawerFooter>
-                    <Button>Submit</Button>
-                    <DrawerClose asChild>
-                      <Button variant="ghost">Cancel</Button>
-                    </DrawerClose>
-                  </DrawerFooter>
-                </DrawerContent>
-              </Drawer>
+              <div className="flex flex-wrap gap-2">
+                {/* Bottom (default) */}
+                <Drawer>
+                  <DrawerTrigger asChild>
+                    <Button>Bottom</Button>
+                  </DrawerTrigger>
+                  <DrawerContent>
+                    <DrawerHeader>
+                      <DrawerTitle>Bottom Drawer</DrawerTitle>
+                      <DrawerDescription>
+                        This drawer slides up from the bottom of the screen.
+                      </DrawerDescription>
+                    </DrawerHeader>
+                    <DrawerFooter>
+                      <Button>Submit</Button>
+                      <DrawerClose asChild>
+                        <Button variant="ghost">Cancel</Button>
+                      </DrawerClose>
+                    </DrawerFooter>
+                  </DrawerContent>
+                </Drawer>
+
+                {/* Top */}
+                <Drawer direction="top">
+                  <DrawerTrigger asChild>
+                    <Button>Top</Button>
+                  </DrawerTrigger>
+                  <DrawerContent>
+                    <DrawerHeader>
+                      <DrawerTitle>Top Drawer</DrawerTitle>
+                      <DrawerDescription>
+                        This drawer slides down from the top of the screen.
+                      </DrawerDescription>
+                    </DrawerHeader>
+                    <DrawerFooter>
+                      <Button>Submit</Button>
+                      <DrawerClose asChild>
+                        <Button variant="ghost">Cancel</Button>
+                      </DrawerClose>
+                    </DrawerFooter>
+                  </DrawerContent>
+                </Drawer>
+
+                {/* Left */}
+                <Drawer direction="left">
+                  <DrawerTrigger asChild>
+                    <Button>Left</Button>
+                  </DrawerTrigger>
+                  <DrawerContent>
+                    <DrawerHeader>
+                      <DrawerTitle>Left Drawer</DrawerTitle>
+                      <DrawerDescription>
+                        This drawer slides in from the left side.
+                      </DrawerDescription>
+                    </DrawerHeader>
+                    <DrawerFooter>
+                      <Button>Submit</Button>
+                      <DrawerClose asChild>
+                        <Button variant="ghost">Cancel</Button>
+                      </DrawerClose>
+                    </DrawerFooter>
+                  </DrawerContent>
+                </Drawer>
+
+                {/* Right */}
+                <Drawer direction="right">
+                  <DrawerTrigger asChild>
+                    <Button>Right</Button>
+                  </DrawerTrigger>
+                  <DrawerContent>
+                    <DrawerHeader>
+                      <DrawerTitle>Right Drawer</DrawerTitle>
+                      <DrawerDescription>
+                        This drawer slides in from the right side.
+                      </DrawerDescription>
+                    </DrawerHeader>
+                    <DrawerFooter>
+                      <Button>Submit</Button>
+                      <DrawerClose asChild>
+                        <Button variant="ghost">Cancel</Button>
+                      </DrawerClose>
+                    </DrawerFooter>
+                  </DrawerContent>
+                </Drawer>
+              </div>
             </ComponentCard>
 
             {/* Dropdown Menu */}
@@ -940,6 +1227,70 @@ export default function HomeContent({ globalsCss }: { globalsCss: string }) {
                 <Input placeholder="Email" type="email" />
                 <Input placeholder="Password" type="password" />
                 <Input placeholder="Disabled" disabled />
+              </div>
+            </ComponentCard>
+
+            {/* Input Group */}
+            <ComponentCard
+              id="input-group"
+              title="Input Group"
+              description="Combines an input with addons like icons, text, or buttons."
+              componentName="input-group"
+            >
+              <div className="space-y-4 max-w-sm">
+                <InputGroup>
+                  <InputGroupAddon>
+                    <InputGroupText>
+                      <Search />
+                    </InputGroupText>
+                  </InputGroupAddon>
+                  <InputGroupInput placeholder="Search..." />
+                </InputGroup>
+
+                <InputGroup>
+                  <InputGroupAddon>
+                    <InputGroupText>
+                      <Mail />
+                    </InputGroupText>
+                  </InputGroupAddon>
+                  <InputGroupInput placeholder="Email address" type="email" />
+                </InputGroup>
+
+                <InputGroup>
+                  <InputGroupAddon>
+                    <InputGroupText>
+                      <DollarSign />
+                    </InputGroupText>
+                  </InputGroupAddon>
+                  <InputGroupInput placeholder="0.00" type="number" />
+                  <InputGroupAddon align="inline-end">
+                    <InputGroupText>USD</InputGroupText>
+                  </InputGroupAddon>
+                </InputGroup>
+
+                <InputGroup>
+                  <InputGroupInput placeholder="90" type="number" />
+                  <InputGroupAddon align="inline-end">
+                    <InputGroupText>1h 30m</InputGroupText>
+                  </InputGroupAddon>
+                </InputGroup>
+
+                <InputGroup>
+                  <InputGroupAddon>
+                    <InputGroupText>https://</InputGroupText>
+                  </InputGroupAddon>
+                  <InputGroupInput placeholder="example.com" />
+                </InputGroup>
+
+                <InputGroup>
+                  <InputGroupInput placeholder="Search..." />
+                  <InputGroupAddon align="inline-end">
+                    <InputGroupButton>
+                      <Search className="size-4" />
+                      Search
+                    </InputGroupButton>
+                  </InputGroupAddon>
+                </InputGroup>
               </div>
             </ComponentCard>
 
@@ -1197,18 +1548,28 @@ export default function HomeContent({ globalsCss }: { globalsCss: string }) {
             >
               <ResizablePanelGroup
                 orientation="horizontal"
-                className="max-w-md rounded-lg border"
+                className="max-w-sm rounded-lg border"
               >
-                <ResizablePanel defaultSize={50}>
+                <ResizablePanel defaultSize="50%">
                   <div className="flex h-[200px] items-center justify-center p-6">
                     <span className="font-semibold">One</span>
                   </div>
                 </ResizablePanel>
                 <ResizableHandle withHandle />
-                <ResizablePanel defaultSize={50}>
-                  <div className="flex h-[200px] items-center justify-center p-6">
-                    <span className="font-semibold">Two</span>
-                  </div>
+                <ResizablePanel defaultSize="50%">
+                  <ResizablePanelGroup orientation="vertical">
+                    <ResizablePanel defaultSize="25%">
+                      <div className="flex h-full items-center justify-center p-6">
+                        <span className="font-semibold">Two</span>
+                      </div>
+                    </ResizablePanel>
+                    <ResizableHandle withHandle />
+                    <ResizablePanel defaultSize="75%">
+                      <div className="flex h-full items-center justify-center p-6">
+                        <span className="font-semibold">Three</span>
+                      </div>
+                    </ResizablePanel>
+                  </ResizablePanelGroup>
                 </ResizablePanel>
               </ResizablePanelGroup>
             </ComponentCard>
@@ -1281,7 +1642,7 @@ export default function HomeContent({ globalsCss }: { globalsCss: string }) {
             >
               <Sheet>
                 <SheetTrigger asChild>
-                  <Button>Open Sheet</Button>
+                  <Button>Open</Button>
                 </SheetTrigger>
                 <SheetContent>
                   <SheetHeader>
@@ -1291,21 +1652,25 @@ export default function HomeContent({ globalsCss }: { globalsCss: string }) {
                       you&apos;re done.
                     </SheetDescription>
                   </SheetHeader>
-                  <div className="py-4">
-                    <div className="space-y-4">
-                      <div className="space-y-2">
-                        <Label htmlFor="name">Name</Label>
-                        <Input id="name" placeholder="Enter your name" />
-                      </div>
-                      <div className="space-y-2">
-                        <Label htmlFor="username">Username</Label>
-                        <Input
-                          id="username"
-                          placeholder="Enter your username"
-                        />
-                      </div>
+                  <div className="grid flex-1 auto-rows-min gap-6 px-4">
+                    <div className="grid gap-3">
+                      <Label htmlFor="sheet-demo-name">Name</Label>
+                      <Input id="sheet-demo-name" defaultValue="Pedro Duarte" />
+                    </div>
+                    <div className="grid gap-3">
+                      <Label htmlFor="sheet-demo-username">Username</Label>
+                      <Input
+                        id="sheet-demo-username"
+                        defaultValue="@peduarte"
+                      />
                     </div>
                   </div>
+                  <SheetFooter>
+                    <Button type="submit">Save changes</Button>
+                    <SheetClose asChild>
+                      <Button>Close</Button>
+                    </SheetClose>
+                  </SheetFooter>
                 </SheetContent>
               </Sheet>
             </ComponentCard>
@@ -1336,38 +1701,6 @@ export default function HomeContent({ globalsCss }: { globalsCss: string }) {
               <div className="w-full max-w-sm space-y-4">
                 <Slider defaultValue={[50]} max={100} step={1} />
                 <Slider defaultValue={[25, 75]} max={100} step={1} />
-              </div>
-            </ComponentCard>
-
-            {/* Sonner / Toast */}
-            <ComponentCard
-              id="sonner"
-              title="Toast (Sonner)"
-              description="An opinionated toast component for React."
-              componentName="sonner"
-            >
-              <div className="flex gap-2">
-                <Button onClick={() => toast("Event has been created")}>
-                  Show Toast
-                </Button>
-                <Button
-                  onClick={() =>
-                    toast.success("Success!", {
-                      description: "Your changes have been saved.",
-                    })
-                  }
-                >
-                  Success Toast
-                </Button>
-                <Button
-                  onClick={() =>
-                    toast.error("Error!", {
-                      description: "Something went wrong.",
-                    })
-                  }
-                >
-                  Error Toast
-                </Button>
               </div>
             </ComponentCard>
 
@@ -1534,6 +1867,38 @@ export default function HomeContent({ globalsCss }: { globalsCss: string }) {
                 <Toggle aria-label="Toggle underline">
                   <Underline className="h-4 w-4" />
                 </Toggle>
+              </div>
+            </ComponentCard>
+
+            {/* Sonner / Toast */}
+            <ComponentCard
+              id="toaster"
+              title="Toaster (Sonner)"
+              description="An opinionated toast component for React."
+              componentName="sonner"
+            >
+              <div className="flex gap-2">
+                <Button onClick={() => toast("Event has been created")}>
+                  Show Toast
+                </Button>
+                <Button
+                  onClick={() =>
+                    toast.success("Success!", {
+                      description: "Your changes have been saved.",
+                    })
+                  }
+                >
+                  Success Toast
+                </Button>
+                <Button
+                  onClick={() =>
+                    toast.error("Error!", {
+                      description: "Something went wrong.",
+                    })
+                  }
+                >
+                  Error Toast
+                </Button>
               </div>
             </ComponentCard>
 
