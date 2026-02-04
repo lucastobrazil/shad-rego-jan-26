@@ -2,7 +2,6 @@
 
 import * as React from "react";
 import { Menu, Filter } from "lucide-react";
-import { Badge } from "@/registry/vitality/ui/badge";
 import { Button } from "@/registry/vitality/ui/button";
 import { Separator } from "@/registry/vitality/ui/separator";
 import {
@@ -17,6 +16,11 @@ import {
   DropdownMenuRadioItem,
   DropdownMenuTrigger,
 } from "@/registry/vitality/ui/dropdown-menu";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/registry/vitality/ui/tooltip";
 
 export const blocks: { name: string; isOfficial: boolean }[] = [
   { name: "Header", isOfficial: false },
@@ -27,7 +31,7 @@ export const components: {
   name: string;
   isOfficial: boolean;
 }[] = [
-  { name: "Theming", isOfficial: true },
+  { name: "Theming", isOfficial: false },
   { name: "Accordion", isOfficial: false },
   { name: "Aspect Ratio", isOfficial: false },
   { name: "Avatar", isOfficial: true },
@@ -80,7 +84,7 @@ export const components: {
   { name: "Typography", isOfficial: true },
 ];
 
-type FilterOption = "all" | "vitality";
+type FilterOption = "all" | "vitality" | "not-vitality";
 
 function NavContent({ onLinkClick }: { onLinkClick?: () => void }) {
   const [filter, setFilter] = React.useState<FilterOption>("all");
@@ -88,6 +92,7 @@ function NavContent({ onLinkClick }: { onLinkClick?: () => void }) {
   const filteredComponents = components.filter(({ isOfficial }) => {
     if (filter === "all") return true;
     if (filter === "vitality") return isOfficial;
+    if (filter === "not-vitality") return !isOfficial;
     return true;
   });
 
@@ -103,6 +108,30 @@ function NavContent({ onLinkClick }: { onLinkClick?: () => void }) {
         </a>
       </nav>
       <Separator className="mb-4" />
+      <h2 className="text-lg font-semibold mb-4">Blocks</h2>
+      <nav className="space-y-1">
+        {blocks.map(({ name, isOfficial }) => (
+          <a
+            key={name}
+            href={`#${name.toLowerCase().replace(/\s+/g, "-")}`}
+            onClick={onLinkClick}
+            className="flex items-center gap-2 px-3 py-2 text-sm rounded-md hover:bg-muted transition-colors"
+          >
+            <span>{name}</span>
+            {isOfficial && (
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <span className="h-1.5 w-1.5 rounded-full bg-secondary" />
+                </TooltipTrigger>
+                <TooltipContent>
+                  This component exists in Vitality
+                </TooltipContent>
+              </Tooltip>
+            )}
+          </a>
+        ))}
+      </nav>
+      <Separator className="my-4" />
       <div className="flex items-center justify-between mb-4">
         <h2 className="text-lg font-semibold">Components</h2>
         <DropdownMenu>
@@ -123,6 +152,9 @@ function NavContent({ onLinkClick }: { onLinkClick?: () => void }) {
               <DropdownMenuRadioItem value="vitality">
                 Vitality
               </DropdownMenuRadioItem>
+              <DropdownMenuRadioItem value="not-vitality">
+                Not Vitality
+              </DropdownMenuRadioItem>
             </DropdownMenuRadioGroup>
           </DropdownMenuContent>
         </DropdownMenu>
@@ -133,25 +165,19 @@ function NavContent({ onLinkClick }: { onLinkClick?: () => void }) {
             key={name}
             href={`#${name.toLowerCase().replace(/\s+/g, "-")}`}
             onClick={onLinkClick}
-            className="flex items-center justify-between px-3 py-2 text-sm rounded-md hover:bg-muted transition-colors"
+            className="flex items-center gap-2 px-3 py-2 text-sm rounded-md hover:bg-muted transition-colors"
           >
             <span>{name}</span>
-            {isOfficial && <Badge>Vitality</Badge>}
-          </a>
-        ))}
-      </nav>
-      <Separator className="my-4" />
-      <h2 className="text-lg font-semibold mb-4">Blocks</h2>
-      <nav className="space-y-1">
-        {blocks.map(({ name, isOfficial }) => (
-          <a
-            key={name}
-            href={`#${name.toLowerCase().replace(/\s+/g, "-")}`}
-            onClick={onLinkClick}
-            className="flex items-center justify-between px-3 py-2 text-sm rounded-md hover:bg-muted transition-colors"
-          >
-            {name}
-            {isOfficial && <Badge variant="neutral">Vitality</Badge>}
+            {isOfficial && (
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <span className="h-1.5 w-1.5 rounded-full bg-secondary" />
+                </TooltipTrigger>
+                <TooltipContent>
+                  This component exists in Vitality
+                </TooltipContent>
+              </Tooltip>
+            )}
           </a>
         ))}
       </nav>

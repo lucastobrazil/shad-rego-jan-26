@@ -425,6 +425,24 @@ export default function HomeContent({ globalsCss }: { globalsCss: string }) {
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-6">
+                <div className="space-y-2">
+                  <h4 className="font-medium">What is this?</h4>
+                  <p className="text-sm text-muted-foreground">
+                    This registry can be used to install the source code of a number of UI
+                    components into your app (or a new one).{" "}
+                    <a href="https://ui.shadcn.com/docs" className="text-primary hover:underline">
+                      Read more
+                    </a>
+                  </p>
+                  <ul className="text-sm text-muted-foreground space-y-1 list-disc list-inside">
+                    <li>A shadcn/ui registry with Vitality design system styling</li>
+                    <li><strong>Vitality</strong> — Custom-styled components</li>
+                    <li><strong>Not Vitality</strong> — Standard shadcn passthroughs</li>
+                  </ul>
+                </div>
+
+                <Separator />
+
                 <div className="space-y-3">
                   <h4 className="font-medium">1. Install a component</h4>
                   <p className="text-sm text-muted-foreground">
