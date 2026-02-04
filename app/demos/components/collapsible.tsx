@@ -13,6 +13,7 @@ export const collapsibleDemo: Demo = {
   description: "An interactive component which expands/collapses a panel.",
   componentName: "collapsible",
   isOfficial: false,
+  filePath: "app/demos/components/collapsible.tsx",
   render: () => (
     <Collapsible className="w-full max-w-[350px] space-y-2">
       <div className="flex items-center justify-between space-x-4 px-4">

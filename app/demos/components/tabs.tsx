@@ -12,6 +12,7 @@ export const tabsDemo: Demo = {
   description: "A set of layered sections of content displayed one at a time.",
   componentName: "tabs",
   isOfficial: true,
+  filePath: "app/demos/components/tabs.tsx",
   render: () => (
     <Tabs defaultValue="account" className="w-full max-w-[400px]">
       <TabsList>

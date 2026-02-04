@@ -28,5 +28,6 @@ export const progressDemo: Demo = {
     "Displays an indicator showing the completion progress of a task.",
   componentName: "progress",
   isOfficial: true,
+  filePath: "app/demos/components/progress.tsx",
   render: () => <ProgressDemo />,
 };

@@ -23,6 +23,7 @@ export const commandDemo: Demo = {
   description: "Fast, composable, unstyled command menu for React.",
   componentName: "command",
   isOfficial: false,
+  filePath: "app/demos/components/command.tsx",
   render: () => (
     <Command className="rounded-lg border shadow-md">
       <CommandInput placeholder="Type a command or search..." />

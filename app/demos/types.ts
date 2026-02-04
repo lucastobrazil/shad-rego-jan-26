@@ -6,6 +6,7 @@ export interface Demo {
   description: string;
   componentName: string;
   isOfficial: boolean;
+  filePath: string;
   render: () => React.ReactNode;
 }
 

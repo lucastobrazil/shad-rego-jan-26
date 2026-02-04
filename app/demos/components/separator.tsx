@@ -7,6 +7,7 @@ export const separatorDemo: Demo = {
   description: "Visually or semantically separates content.",
   componentName: "separator",
   isOfficial: true,
+  filePath: "app/demos/components/separator.tsx",
   render: () => (
     <div className="space-y-4">
       <div>

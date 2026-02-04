@@ -18,6 +18,7 @@ export const drawerDemo: Demo = {
     "A drawer component with support for 4 directions: bottom (default), top, left, and right.",
   componentName: "drawer",
   isOfficial: false,
+  filePath: "app/demos/components/drawer.tsx",
   render: () => (
     <div className="flex flex-wrap gap-2">
       {/* Bottom (default) */}

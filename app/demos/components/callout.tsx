@@ -17,6 +17,7 @@ export const calloutDemo: Demo = {
   description: "Displays important messages with severity variants.",
   componentName: "callout",
   isOfficial: true,
+  filePath: "app/demos/components/callout.tsx",
   render: () => (
     <div className="space-y-4">
       <Callout>

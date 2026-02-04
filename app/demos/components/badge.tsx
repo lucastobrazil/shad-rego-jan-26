@@ -7,6 +7,7 @@ export const badgeDemo: Demo = {
   description: "Displays a badge or a component that looks like a badge.",
   componentName: "badge",
   isOfficial: true,
+  filePath: "app/demos/components/badge.tsx",
   render: () => (
     <div className="flex flex-wrap gap-2">
       <Badge>Default</Badge>

@@ -8,6 +8,7 @@ export const toggleGroupDemo: Demo = {
   description: "A set of two-state buttons that can be toggled on or off.",
   componentName: "toggle-group",
   isOfficial: false,
+  filePath: "app/demos/components/toggle-group.tsx",
   render: () => (
     <ToggleGroup type="multiple">
       <ToggleGroupItem value="bold" aria-label="Toggle bold">

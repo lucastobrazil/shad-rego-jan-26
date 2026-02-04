@@ -56,5 +56,6 @@ export const datePickerDemo: Demo = {
   description: "A date picker component with popover calendar.",
   componentName: "date-picker",
   isOfficial: true,
+  filePath: "app/demos/components/date-picker.tsx",
   render: () => <DatePickerDemo />,
 };

@@ -9,6 +9,7 @@ export const sideNavDemo: BlockDemo = {
     "A collapsible sidebar navigation with icon and text items. Note that this demo includes the header component too.",
   componentName: "side-nav",
   isOfficial: false,
+  filePath: "app/demos/blocks/side-nav.tsx",
   render: () => (
     <>
       <Header />

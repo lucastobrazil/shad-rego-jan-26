@@ -23,5 +23,6 @@ export const calendarDemo: Demo = {
   description: "A date field component that allows users to enter and edit date.",
   componentName: "calendar",
   isOfficial: true,
+  filePath: "app/demos/components/calendar.tsx",
   render: () => <CalendarDemo />,
 };

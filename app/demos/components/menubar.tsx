@@ -14,6 +14,7 @@ export const menubarDemo: Demo = {
   description: "A visually persistent menu common in desktop applications.",
   componentName: "menubar",
   isOfficial: false,
+  filePath: "app/demos/components/menubar.tsx",
   render: () => (
     <Menubar>
       <MenubarMenu>

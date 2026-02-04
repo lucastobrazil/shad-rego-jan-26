@@ -15,6 +15,7 @@ export const dropdownMenuDemo: Demo = {
   description: "Displays a menu to the user triggered by a button.",
   componentName: "dropdown-menu",
   isOfficial: true,
+  filePath: "app/demos/components/dropdown-menu.tsx",
   render: () => (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>

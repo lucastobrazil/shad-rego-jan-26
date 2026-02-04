@@ -14,6 +14,7 @@ export const carouselDemo: Demo = {
   description: "A carousel with motion and swipe built using Embla.",
   componentName: "carousel",
   isOfficial: false,
+  filePath: "app/demos/components/carousel.tsx",
   render: () => (
     <div className="w-full max-w-xs mx-auto">
       <Carousel>

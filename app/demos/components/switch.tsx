@@ -37,5 +37,6 @@ export const switchDemo: Demo = {
   description: "A control that allows the user to toggle between on and off.",
   componentName: "switch",
   isOfficial: true,
+  filePath: "app/demos/components/switch.tsx",
   render: () => <SwitchDemo />,
 };

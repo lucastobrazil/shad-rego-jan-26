@@ -15,6 +15,7 @@ export const paginationDemo: Demo = {
   description: "Pagination with page navigation, next and previous links.",
   componentName: "pagination",
   isOfficial: false,
+  filePath: "app/demos/components/pagination.tsx",
   render: () => (
     <Pagination>
       <PaginationContent>

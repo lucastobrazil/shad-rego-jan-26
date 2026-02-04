@@ -8,6 +8,7 @@ export const sliderDemo: Demo = {
     "An input where the user selects a value from within a given range.",
   componentName: "slider",
   isOfficial: false,
+  filePath: "app/demos/components/slider.tsx",
   render: () => (
     <div className="w-full max-w-sm space-y-4">
       <Slider defaultValue={[50]} max={100} step={1} />

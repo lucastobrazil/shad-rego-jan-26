@@ -14,6 +14,7 @@ export const navigationMenuDemo: Demo = {
   description: "A collection of links for navigating websites.",
   componentName: "navigation-menu",
   isOfficial: false,
+  filePath: "app/demos/components/navigation-menu.tsx",
   render: () => (
     <NavigationMenu>
       <NavigationMenuList>

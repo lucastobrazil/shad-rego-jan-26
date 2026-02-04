@@ -12,6 +12,7 @@ export const popoverDemo: Demo = {
   description: "Displays rich content in a portal, triggered by a button.",
   componentName: "popover",
   isOfficial: true,
+  filePath: "app/demos/components/popover.tsx",
   render: () => (
     <Popover>
       <PopoverTrigger asChild>

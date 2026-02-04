@@ -59,12 +59,14 @@ function ComponentCard({
   title,
   description,
   componentName,
+  sourceCode,
   children,
 }: {
   id: string;
   title: string;
   description: string;
   componentName: string;
+  sourceCode?: string;
   children: React.ReactNode;
 }) {
   const installCommand = `npx shadcn@latest add ${REGISTRY_URL}/r/${componentName}.json`;
@@ -81,6 +83,34 @@ function ComponentCard({
       </CardHeader>
       <CardContent className="space-y-4">
         {children}
+
+        {sourceCode && (
+          <details className="group mt-4">
+            <summary className="cursor-pointer text-sm text-muted-foreground hover:text-foreground transition-colors list-none flex items-center gap-2">
+              <svg
+                className="h-4 w-4 transition-transform group-open:rotate-90"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M9 5l7 7-7 7"
+                />
+              </svg>
+              View code
+            </summary>
+            <div className="mt-3">
+              <div
+                className="overflow-x-auto rounded-md border bg-muted/50 p-4 text-sm max-h-96 overflow-y-auto [&_pre]:!bg-transparent [&_pre]:!p-0 [&_pre]:!m-0 [&_code]:!bg-transparent"
+                dangerouslySetInnerHTML={{ __html: sourceCode }}
+              />
+            </div>
+          </details>
+        )}
+
         <div className="mt-4 pt-4 border-t">
           <p className="text-xs text-muted-foreground mb-2">Install</p>
           <div className="flex items-center gap-2 bg-muted px-3 py-2 rounded-md">
@@ -100,6 +130,7 @@ function BlockCard({
   title,
   description,
   blockName,
+  sourceCode,
   children,
   className,
 }: {
@@ -107,6 +138,7 @@ function BlockCard({
   title: string;
   description: string;
   blockName: string;
+  sourceCode?: string;
   children: React.ReactNode;
   className?: string;
 }) {
@@ -125,6 +157,34 @@ function BlockCard({
       </CardHeader>
       <CardContent>
         {children}
+
+        {sourceCode && (
+          <details className="group mt-4">
+            <summary className="cursor-pointer text-sm text-muted-foreground hover:text-foreground transition-colors list-none flex items-center gap-2">
+              <svg
+                className="h-4 w-4 transition-transform group-open:rotate-90"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M9 5l7 7-7 7"
+                />
+              </svg>
+              View code
+            </summary>
+            <div className="mt-3">
+              <div
+                className="overflow-x-auto rounded-md border bg-muted/50 p-4 text-sm max-h-96 overflow-y-auto [&_pre]:!bg-transparent [&_pre]:!p-0 [&_pre]:!m-0 [&_code]:!bg-transparent"
+                dangerouslySetInnerHTML={{ __html: sourceCode }}
+              />
+            </div>
+          </details>
+        )}
+
         <div className="mt-4 pt-4 border-t">
           <p className="text-xs text-muted-foreground mb-2">Install</p>
           <div className="flex items-center gap-2 bg-muted px-3 py-2 rounded-md">
@@ -139,7 +199,13 @@ function BlockCard({
   );
 }
 
-export default function HomeContent({ globalsCss }: { globalsCss: string }) {
+export default function HomeContent({
+  globalsCss,
+  demoSources,
+}: {
+  globalsCss: string;
+  demoSources: Record<string, string>;
+}) {
   return (
     <TooltipProvider>
       <div className="flex min-h-screen">
@@ -302,6 +368,7 @@ export function Button({ children, ...props }) {
                 title={demo.title}
                 description={demo.description}
                 componentName={demo.componentName}
+                sourceCode={demoSources[demo.id]}
               >
                 {demo.render()}
               </ComponentCard>
@@ -323,6 +390,7 @@ export function Button({ children, ...props }) {
                 title={demo.title}
                 description={demo.description}
                 blockName={demo.componentName}
+                sourceCode={demoSources[demo.id]}
                 className={demo.className}
               >
                 {demo.render()}

@@ -9,6 +9,7 @@ export const checkboxDemo: Demo = {
     "A control that allows the user to toggle between checked and not checked.",
   componentName: "checkbox",
   isOfficial: true,
+  filePath: "app/demos/components/checkbox.tsx",
   render: () => (
     <div className="space-y-4">
       <div className="flex items-center space-x-2">

@@ -7,6 +7,7 @@ export const skeletonDemo: Demo = {
   description: "Use to show a placeholder while content is loading.",
   componentName: "skeleton",
   isOfficial: true,
+  filePath: "app/demos/components/skeleton.tsx",
   render: () => (
     <div className="flex items-center space-x-4">
       <Skeleton className="h-12 w-12 rounded-full" />

@@ -8,6 +8,7 @@ export const buttonDemo: Demo = {
   description: "Displays a button or a component that looks like a button.",
   componentName: "button",
   isOfficial: true,
+  filePath: "app/demos/components/button.tsx",
   render: () => (
     <>
       <div className="flex flex-wrap gap-2">

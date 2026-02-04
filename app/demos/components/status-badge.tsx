@@ -8,6 +8,7 @@ export const statusBadgeDemo: Demo = {
     "A rectangular badge component for displaying status indicators.",
   componentName: "status-badge",
   isOfficial: true,
+  filePath: "app/demos/components/status-badge.tsx",
   render: () => (
     <div className="flex flex-wrap gap-2">
       <StatusBadge>Default</StatusBadge>

@@ -17,6 +17,7 @@ export const dialogDemo: Demo = {
     "A window overlaid on either the primary window or another dialog window.",
   componentName: "dialog",
   isOfficial: true,
+  filePath: "app/demos/components/dialog.tsx",
   render: () => (
     <Dialog>
       <DialogTrigger asChild>

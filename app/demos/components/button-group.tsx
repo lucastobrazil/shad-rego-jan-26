@@ -18,6 +18,7 @@ export const buttonGroupDemo: Demo = {
     "A container that groups related buttons together with consistent styling.",
   componentName: "button-group",
   isOfficial: true,
+  filePath: "app/demos/components/button-group.tsx",
   render: () => (
     <div className="space-y-4">
       <div className="space-y-2">

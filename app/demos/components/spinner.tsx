@@ -7,6 +7,7 @@ export const spinnerDemo: Demo = {
   description: "A loading spinner with size and variant options.",
   componentName: "spinner",
   isOfficial: true,
+  filePath: "app/demos/components/spinner.tsx",
   render: () => (
     <div className="space-y-4">
       <div className="flex items-end gap-4">

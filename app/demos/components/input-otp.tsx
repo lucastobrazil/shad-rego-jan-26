@@ -13,6 +13,7 @@ export const inputOtpDemo: Demo = {
     "Accessible one-time password component with copy paste functionality.",
   componentName: "input-otp",
   isOfficial: false,
+  filePath: "app/demos/components/input-otp.tsx",
   render: () => (
     <InputOTP maxLength={6}>
       <InputOTPGroup>

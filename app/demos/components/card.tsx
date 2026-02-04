@@ -15,6 +15,7 @@ export const cardDemo: Demo = {
   description: "Displays a card with header, content, and footer.",
   componentName: "card",
   isOfficial: false,
+  filePath: "app/demos/components/card.tsx",
   render: () => (
     <Card className="w-full max-w-[350px]">
       <CardHeader>

@@ -13,6 +13,7 @@ export const hoverCardDemo: Demo = {
     "For sighted users to preview content available behind a link.",
   componentName: "hover-card",
   isOfficial: false,
+  filePath: "app/demos/components/hover-card.tsx",
   render: () => (
     <HoverCard>
       <HoverCardTrigger asChild>

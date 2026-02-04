@@ -12,6 +12,7 @@ export const resizableDemo: Demo = {
     "Accessible resizable panel groups and layouts with keyboard support.",
   componentName: "resizable",
   isOfficial: false,
+  filePath: "app/demos/components/resizable.tsx",
   render: () => (
     <ResizablePanelGroup
       orientation="horizontal"

@@ -7,6 +7,7 @@ export const aspectRatioDemo: Demo = {
   description: "Displays content within a desired ratio.",
   componentName: "aspect-ratio",
   isOfficial: false,
+  filePath: "app/demos/components/aspect-ratio.tsx",
   render: () => (
     <div className="w-full max-w-[450px]">
       <AspectRatio

@@ -8,6 +8,7 @@ export const scrollAreaDemo: Demo = {
     "Augments native scroll functionality for custom, cross-browser styling.",
   componentName: "scroll-area",
   isOfficial: false,
+  filePath: "app/demos/components/scroll-area.tsx",
   render: () => (
     <ScrollArea className="h-72 w-48 rounded-md border">
       <div className="p-4">

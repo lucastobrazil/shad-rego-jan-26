@@ -11,6 +11,7 @@ export const avatarDemo: Demo = {
   description: "An image element with a fallback for representing the user.",
   componentName: "avatar",
   isOfficial: true,
+  filePath: "app/demos/components/avatar.tsx",
   render: () => (
     <div className="space-y-4">
       <div className="flex items-end gap-4">

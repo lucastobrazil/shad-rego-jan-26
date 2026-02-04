@@ -19,6 +19,7 @@ export const typographyDemo: Demo = {
   description: "Styles for headings, paragraphs, and other text elements.",
   componentName: "typography",
   isOfficial: true,
+  filePath: "app/demos/components/typography.tsx",
   render: () => (
     <div className="space-y-6">
       <div className="space-y-2">

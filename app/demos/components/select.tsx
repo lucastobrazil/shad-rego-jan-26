@@ -13,6 +13,7 @@ export const selectDemo: Demo = {
   description: "Displays a list of options for the user to pick from.",
   componentName: "select",
   isOfficial: true,
+  filePath: "app/demos/components/select.tsx",
   render: () => (
     <Select>
       <SelectTrigger className="w-[180px]">

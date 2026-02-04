@@ -7,6 +7,7 @@ export const kbdDemo: Demo = {
   description: "Displays keyboard keys or shortcuts.",
   componentName: "kbd",
   isOfficial: false,
+  filePath: "app/demos/components/kbd.tsx",
   render: () => (
     <div className="flex flex-wrap items-center gap-4">
       <div className="flex items-center gap-1">

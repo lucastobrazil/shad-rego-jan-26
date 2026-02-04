@@ -8,6 +8,7 @@ export const labelDemo: Demo = {
   description: "Renders an accessible label associated with controls.",
   componentName: "label",
   isOfficial: false,
+  filePath: "app/demos/components/label.tsx",
   render: () => (
     <div className="space-y-4 max-w-sm">
       <div className="space-y-2">

@@ -15,6 +15,7 @@ export const emptyDemo: Demo = {
     "Empty state placeholder for when there is no data to display.",
   componentName: "empty",
   isOfficial: true,
+  filePath: "app/demos/components/empty.tsx",
   render: () => (
     <Empty className="min-h-[250px]">
       <EmptyIcon>

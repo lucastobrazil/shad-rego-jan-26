@@ -15,6 +15,7 @@ export const breadcrumbDemo: Demo = {
     "Displays the path to the current resource using a hierarchy of links.",
   componentName: "breadcrumb",
   isOfficial: true,
+  filePath: "app/demos/components/breadcrumb.tsx",
   render: () => (
     <Breadcrumb>
       <BreadcrumbList>

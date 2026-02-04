@@ -13,6 +13,7 @@ export const contextMenuDemo: Demo = {
     "Displays a menu located at the pointer, triggered by a right-click.",
   componentName: "context-menu",
   isOfficial: false,
+  filePath: "app/demos/components/context-menu.tsx",
   render: () => (
     <ContextMenu>
       <ContextMenuTrigger className="flex h-[150px] w-full max-w-[300px] items-center justify-center rounded-md border border-dashed text-sm">

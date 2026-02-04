@@ -14,6 +14,7 @@ export const inputGroupDemo: Demo = {
   description: "Combines an input with addons like icons, text, or buttons.",
   componentName: "input-group",
   isOfficial: false,
+  filePath: "app/demos/components/input-group.tsx",
   render: () => (
     <div className="space-y-4 max-w-sm">
       <InputGroup>

@@ -12,6 +12,7 @@ export const tooltipDemo: Demo = {
   description: "A popup that displays information related to an element.",
   componentName: "tooltip",
   isOfficial: true,
+  filePath: "app/demos/components/tooltip.tsx",
   render: () => (
     <Tooltip>
       <TooltipTrigger asChild>

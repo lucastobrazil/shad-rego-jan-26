@@ -8,6 +8,7 @@ export const toggleDemo: Demo = {
   description: "A two-state button that can be either on or off.",
   componentName: "toggle",
   isOfficial: false,
+  filePath: "app/demos/components/toggle.tsx",
   render: () => (
     <div className="flex gap-2">
       <Toggle aria-label="Toggle bold">

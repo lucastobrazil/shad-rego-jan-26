@@ -8,6 +8,7 @@ export const textareaDemo: Demo = {
     "Displays a form textarea or a component that looks like a textarea.",
   componentName: "textarea",
   isOfficial: true,
+  filePath: "app/demos/components/textarea.tsx",
   render: () => (
     <div className="max-w-sm">
       <Textarea placeholder="Type your message here." />

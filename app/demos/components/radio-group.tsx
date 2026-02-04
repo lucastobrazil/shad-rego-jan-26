@@ -9,6 +9,7 @@ export const radioGroupDemo: Demo = {
     "A set of checkable buttons where no more than one can be checked at a time.",
   componentName: "radio-group",
   isOfficial: true,
+  filePath: "app/demos/components/radio-group.tsx",
   render: () => (
     <RadioGroup defaultValue="option-one">
       <div className="flex items-center space-x-2">

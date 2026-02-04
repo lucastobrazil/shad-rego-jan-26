@@ -20,6 +20,7 @@ export const sheetDemo: Demo = {
     "Extends the Dialog component to display content that complements the main content of the screen.",
   componentName: "sheet",
   isOfficial: false,
+  filePath: "app/demos/components/sheet.tsx",
   render: () => (
     <Sheet>
       <SheetTrigger asChild>

@@ -14,6 +14,7 @@ export const tableDemo: Demo = {
   description: "A responsive table component.",
   componentName: "table",
   isOfficial: true,
+  filePath: "app/demos/components/table.tsx",
   render: () => (
     <Table>
       <TableHeader>

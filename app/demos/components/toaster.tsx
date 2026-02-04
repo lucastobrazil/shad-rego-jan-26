@@ -8,6 +8,7 @@ export const toasterDemo: Demo = {
   description: "An opinionated toast component for React.",
   componentName: "sonner",
   isOfficial: true,
+  filePath: "app/demos/components/toaster.tsx",
   render: () => (
     <div className="flex gap-2">
       <Button onClick={() => toast("Event has been created")}>

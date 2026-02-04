@@ -13,6 +13,7 @@ export const accordionDemo: Demo = {
     "A vertically stacked set of interactive headings that reveal content.",
   componentName: "accordion",
   isOfficial: false,
+  filePath: "app/demos/components/accordion.tsx",
   render: () => (
     <Accordion type="single" collapsible className="w-full">
       <AccordionItem value="item-1">

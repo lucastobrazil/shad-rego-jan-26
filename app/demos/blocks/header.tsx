@@ -7,6 +7,7 @@ export const headerDemo: BlockDemo = {
   description: "A responsive header with navigation and mobile menu.",
   componentName: "header",
   isOfficial: false,
+  filePath: "app/demos/blocks/header.tsx",
   render: () => (
     <div className="border rounded-lg overflow-hidden">
       <Header

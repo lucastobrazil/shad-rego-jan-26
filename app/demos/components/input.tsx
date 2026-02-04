@@ -8,6 +8,7 @@ export const inputDemo: Demo = {
     "Displays a form input field or a component that looks like an input field.",
   componentName: "input",
   isOfficial: true,
+  filePath: "app/demos/components/input.tsx",
   render: () => (
     <div className="space-y-4 max-w-sm">
       <Input placeholder="Email" type="email" />
