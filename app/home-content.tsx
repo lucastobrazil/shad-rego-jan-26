@@ -719,7 +719,7 @@ export function Button({ children, ...props }) {
                 <div className="space-y-2">
                   <p className="text-sm text-muted-foreground">Dropdown</p>
                   <ButtonGroup className="w-32">
-                    <Button>Snooze</Button>
+                    <Button>Action</Button>
                     <DropdownMenu>
                       <DropdownMenuTrigger asChild>
                         <Button size="icon">

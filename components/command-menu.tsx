@@ -44,9 +44,7 @@ export function CommandMenu() {
       <CommandList>
         <CommandEmpty>No results found.</CommandEmpty>
         <CommandGroup heading="Components">
-          {components
-            .filter((c) => !c.notYet)
-            .map((component) => (
+          {components.map((component) => (
               <CommandItem
                 key={component.name}
                 value={component.name}

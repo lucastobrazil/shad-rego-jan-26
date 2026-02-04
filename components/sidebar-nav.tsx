@@ -26,12 +26,10 @@ export const blocks: { name: string; isOfficial: boolean }[] = [
 export const components: {
   name: string;
   isOfficial: boolean;
-  notYet?: boolean;
 }[] = [
   { name: "Theming", isOfficial: true },
   { name: "Accordion", isOfficial: false },
   { name: "Aspect Ratio", isOfficial: false },
-  { name: "Audit Trail", isOfficial: true, notYet: true },
   { name: "Avatar", isOfficial: true },
   { name: "Badge", isOfficial: true },
   { name: "Breadcrumb", isOfficial: true },
@@ -42,45 +40,32 @@ export const components: {
   { name: "Card", isOfficial: false },
   { name: "Carousel", isOfficial: false },
   { name: "Checkbox", isOfficial: true },
-  { name: "Chip", isOfficial: true, notYet: true },
   { name: "Collapsible", isOfficial: false },
   { name: "Command", isOfficial: false },
   { name: "Context Menu", isOfficial: false },
-  { name: "Currency Input", isOfficial: true, notYet: true },
   { name: "Date Picker", isOfficial: true },
-  { name: "Date Range Picker", isOfficial: true, notYet: true },
   { name: "Dialog", isOfficial: true },
   { name: "Drawer", isOfficial: false },
   { name: "Dropdown Menu", isOfficial: true },
-  { name: "Duration Input", isOfficial: true, notYet: true },
   { name: "Empty", isOfficial: true },
-  { name: "Form Field", isOfficial: true, notYet: true },
   { name: "Hover Card", isOfficial: false },
-  { name: "Icon Button", isOfficial: true, notYet: true },
-  { name: "Icons", isOfficial: true, notYet: true },
   { name: "Input", isOfficial: true },
   { name: "Input Group", isOfficial: false },
   { name: "Input OTP", isOfficial: false },
   { name: "Kbd", isOfficial: false },
   { name: "Label", isOfficial: false },
-  { name: "Linear Progress", isOfficial: true, notYet: true },
   { name: "Menubar", isOfficial: false },
   { name: "Navigation Menu", isOfficial: false },
   { name: "Pagination", isOfficial: false },
-  { name: "Password Input", isOfficial: true, notYet: true },
   { name: "Popover", isOfficial: true },
   { name: "Progress", isOfficial: true },
   { name: "Radio Group", isOfficial: true },
   { name: "Resizable", isOfficial: false },
   { name: "Scroll Area", isOfficial: false },
-  { name: "Search Input", isOfficial: true, notYet: true },
-  { name: "Search Select Input", isOfficial: true, notYet: true },
   { name: "Select", isOfficial: true },
   { name: "Separator", isOfficial: true },
   { name: "Sheet", isOfficial: false },
-  { name: "Shortcuts", isOfficial: true, notYet: true },
   { name: "Skeleton", isOfficial: true },
-  { name: "Skeleton Box", isOfficial: true, notYet: true },
   { name: "Slider", isOfficial: false },
   { name: "Spinner", isOfficial: true },
   { name: "Status Badge", isOfficial: true },
@@ -88,24 +73,21 @@ export const components: {
   { name: "Table", isOfficial: true },
   { name: "Tabs", isOfficial: true },
   { name: "Textarea", isOfficial: true },
-  { name: "Time Picker", isOfficial: true, notYet: true },
   { name: "Toaster", isOfficial: true },
   { name: "Toggle", isOfficial: false },
   { name: "Toggle Group", isOfficial: false },
   { name: "Tooltip", isOfficial: true },
-  { name: "Truncate Content", isOfficial: true, notYet: true },
   { name: "Typography", isOfficial: true },
 ];
 
-type FilterOption = "all" | "vitality" | "soon";
+type FilterOption = "all" | "vitality";
 
 function NavContent({ onLinkClick }: { onLinkClick?: () => void }) {
   const [filter, setFilter] = React.useState<FilterOption>("all");
 
-  const filteredComponents = components.filter(({ isOfficial, notYet }) => {
+  const filteredComponents = components.filter(({ isOfficial }) => {
     if (filter === "all") return true;
-    if (filter === "vitality") return isOfficial && !notYet;
-    if (filter === "soon") return notYet;
+    if (filter === "vitality") return isOfficial;
     return true;
   });
 
@@ -141,26 +123,20 @@ function NavContent({ onLinkClick }: { onLinkClick?: () => void }) {
               <DropdownMenuRadioItem value="vitality">
                 Vitality
               </DropdownMenuRadioItem>
-              <DropdownMenuRadioItem value="soon">Soon</DropdownMenuRadioItem>
             </DropdownMenuRadioGroup>
           </DropdownMenuContent>
         </DropdownMenu>
       </div>
       <nav className="space-y-1">
-        {filteredComponents.map(({ name, isOfficial, notYet }) => (
+        {filteredComponents.map(({ name, isOfficial }) => (
           <a
             key={name}
             href={`#${name.toLowerCase().replace(/\s+/g, "-")}`}
             onClick={onLinkClick}
             className="flex items-center justify-between px-3 py-2 text-sm rounded-md hover:bg-muted transition-colors"
           >
-            <span className={notYet ? "text-muted-foreground" : ""}>
-              {name}
-            </span>
-            <div className="flex gap-1">
-              {notYet && <Badge variant="neutral">Soon</Badge>}
-              {isOfficial && !notYet && <Badge>Vitality</Badge>}
-            </div>
+            <span>{name}</span>
+            {isOfficial && <Badge>Vitality</Badge>}
           </a>
         ))}
       </nav>
