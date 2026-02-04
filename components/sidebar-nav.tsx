@@ -21,68 +21,7 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@/registry/vitality/ui/tooltip";
-
-export const blocks: { name: string; isOfficial: boolean }[] = [
-  { name: "Header", isOfficial: false },
-  { name: "Side Nav", isOfficial: false },
-];
-
-export const components: {
-  name: string;
-  isOfficial: boolean;
-}[] = [
-  { name: "Theming", isOfficial: false },
-  { name: "Accordion", isOfficial: false },
-  { name: "Aspect Ratio", isOfficial: false },
-  { name: "Avatar", isOfficial: true },
-  { name: "Badge", isOfficial: true },
-  { name: "Breadcrumb", isOfficial: true },
-  { name: "Button", isOfficial: true },
-  { name: "Button Group", isOfficial: true },
-  { name: "Calendar", isOfficial: true },
-  { name: "Callout", isOfficial: true },
-  { name: "Card", isOfficial: false },
-  { name: "Carousel", isOfficial: false },
-  { name: "Checkbox", isOfficial: true },
-  { name: "Collapsible", isOfficial: false },
-  { name: "Command", isOfficial: false },
-  { name: "Context Menu", isOfficial: false },
-  { name: "Date Picker", isOfficial: true },
-  { name: "Dialog", isOfficial: true },
-  { name: "Drawer", isOfficial: false },
-  { name: "Dropdown Menu", isOfficial: true },
-  { name: "Empty", isOfficial: true },
-  { name: "Hover Card", isOfficial: false },
-  { name: "Input", isOfficial: true },
-  { name: "Input Group", isOfficial: false },
-  { name: "Input OTP", isOfficial: false },
-  { name: "Kbd", isOfficial: false },
-  { name: "Label", isOfficial: false },
-  { name: "Menubar", isOfficial: false },
-  { name: "Navigation Menu", isOfficial: false },
-  { name: "Pagination", isOfficial: false },
-  { name: "Popover", isOfficial: true },
-  { name: "Progress", isOfficial: true },
-  { name: "Radio Group", isOfficial: true },
-  { name: "Resizable", isOfficial: false },
-  { name: "Scroll Area", isOfficial: false },
-  { name: "Select", isOfficial: true },
-  { name: "Separator", isOfficial: true },
-  { name: "Sheet", isOfficial: false },
-  { name: "Skeleton", isOfficial: true },
-  { name: "Slider", isOfficial: false },
-  { name: "Spinner", isOfficial: true },
-  { name: "Status Badge", isOfficial: true },
-  { name: "Switch", isOfficial: true },
-  { name: "Table", isOfficial: true },
-  { name: "Tabs", isOfficial: true },
-  { name: "Textarea", isOfficial: true },
-  { name: "Toaster", isOfficial: true },
-  { name: "Toggle", isOfficial: false },
-  { name: "Toggle Group", isOfficial: false },
-  { name: "Tooltip", isOfficial: true },
-  { name: "Typography", isOfficial: true },
-];
+import { components, blocks } from "@/app/demos";
 
 type FilterOption = "all" | "vitality" | "not-vitality";
 

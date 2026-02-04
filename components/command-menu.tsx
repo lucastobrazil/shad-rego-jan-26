@@ -12,7 +12,7 @@ import {
   CommandItem,
   CommandList,
 } from "@/registry/vitality/ui/command";
-import { components, blocks } from "@/components/sidebar-nav";
+import { components, blocks } from "@/app/demos";
 
 export function CommandMenu() {
   const [open, setOpen] = React.useState(false);
