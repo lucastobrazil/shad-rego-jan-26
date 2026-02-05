@@ -20,6 +20,18 @@ import { componentDemos, blockDemos, components, blocks } from "./demos";
 
 const REGISTRY_URL = "https://lucastobrazil.github.io/shad-rego-jan-26";
 
+const DIRECT_USAGE_CODE = `import { Button } from "@/components/ui/button"
+
+<Button variant="primary">Save</Button>`;
+
+const WRAPPER_CODE = `// components/product/button.tsx
+import { Button as Base } from "@/components/ui/button"
+
+export function Button({ children, ...props }) {
+  // Add tracking, enforce variants, etc.
+  return <Base {...props}>{children}</Base>
+}`;
+
 function CopyButton({ text }: { text: string }) {
   const [copied, setCopied] = React.useState(false);
 
@@ -40,6 +52,17 @@ function CopyButton({ text }: { text: string }) {
       <span className="sr-only">Copy to clipboard</span>
     </Button>
   );
+}
+
+function stripHtml(html: string): string {
+  return html
+    .replace(/<[^>]*>/g, "")
+    .replace(/&lt;/g, "<")
+    .replace(/&gt;/g, ">")
+    .replace(/&amp;/g, "&")
+    .replace(/&quot;/g, '"')
+    .replace(/&#39;/g, "'")
+    .replace(/&nbsp;/g, " ");
 }
 
 // Helper to look up isOfficial status by component title
@@ -102,11 +125,14 @@ function ComponentCard({
               </svg>
               View code
             </summary>
-            <div className="mt-3">
+            <div className="mt-3 relative">
               <div
                 className="overflow-x-auto rounded-md border bg-muted/50 p-4 text-sm max-h-96 overflow-y-auto [&_pre]:!bg-transparent [&_pre]:!p-0 [&_pre]:!m-0 [&_code]:!bg-transparent"
                 dangerouslySetInnerHTML={{ __html: sourceCode }}
               />
+              <div className="absolute top-2 right-2">
+                <CopyButton text={stripHtml(sourceCode)} />
+              </div>
             </div>
           </details>
         )}
@@ -176,11 +202,14 @@ function BlockCard({
               </svg>
               View code
             </summary>
-            <div className="mt-3">
+            <div className="mt-3 relative">
               <div
                 className="overflow-x-auto rounded-md border bg-muted/50 p-4 text-sm max-h-96 overflow-y-auto [&_pre]:!bg-transparent [&_pre]:!p-0 [&_pre]:!m-0 [&_code]:!bg-transparent"
                 dangerouslySetInnerHTML={{ __html: sourceCode }}
               />
+              <div className="absolute top-2 right-2">
+                <CopyButton text={stripHtml(sourceCode)} />
+              </div>
             </div>
           </details>
         )}
@@ -201,9 +230,11 @@ function BlockCard({
 
 export default function HomeContent({
   globalsCss,
+  globalsCssHighlighted,
   demoSources,
 }: {
   globalsCss: string;
+  globalsCssHighlighted: string;
   demoSources: Record<string, string>;
 }) {
   return (
@@ -298,9 +329,7 @@ export default function HomeContent({
                         Direct usage
                       </p>
                       <pre className="bg-muted p-3 rounded-md text-xs font-mono overflow-x-auto">
-                        <code>{`import { Button } from "@/components/ui/button"
-
-<Button variant="primary">Save</Button>`}</code>
+                        <code>{DIRECT_USAGE_CODE}</code>
                       </pre>
                     </div>
                     <div className="space-y-2">
@@ -308,13 +337,7 @@ export default function HomeContent({
                         With a product wrapper
                       </p>
                       <pre className="bg-muted p-3 rounded-md text-xs font-mono overflow-x-auto">
-                        <code>{`// components/product/button.tsx
-import { Button as Base } from "@/components/ui/button"
-
-export function Button({ children, ...props }) {
-  // Add tracking, enforce variants, etc.
-  return <Base {...props}>{children}</Base>
-}`}</code>
+                        <code>{WRAPPER_CODE}</code>
                       </pre>
                     </div>
                   </div>
@@ -350,9 +373,10 @@ export function Button({ children, ...props }) {
               </CardHeader>
               <CardContent>
                 <div className="relative">
-                  <pre className="bg-muted p-4 rounded-md overflow-x-auto text-xs font-mono max-h-96 overflow-y-auto">
-                    <code>{globalsCss}</code>
-                  </pre>
+                  <div
+                    className="overflow-x-auto rounded-md border bg-muted/50 p-4 text-sm max-h-96 overflow-y-auto [&_pre]:!bg-transparent [&_pre]:!p-0 [&_pre]:!m-0 [&_code]:!bg-transparent"
+                    dangerouslySetInnerHTML={{ __html: globalsCssHighlighted }}
+                  />
                   <div className="absolute top-2 right-2">
                     <CopyButton text={globalsCss} />
                   </div>

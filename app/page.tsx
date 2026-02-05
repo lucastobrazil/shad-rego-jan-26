@@ -6,46 +6,43 @@ import { highlightCode } from "@/lib/highlight-code";
 
 // Extract imports and render function body from demo source
 function extractDemoCode(code: string): string {
-  // Extract all import statements (handles multi-line imports)
-  const importRegex = /^import\s+(?:(?:\{[^}]*\}|[^;]+)\s+from\s+)?["'][^"']+["'];?$/gm;
-  const multiLineImportRegex = /^import\s+\{[\s\S]*?\}\s+from\s+["'][^"']+["'];?$/gm;
+  // Extract all import blocks (handles multi-line imports)
+  // Match from "import" to the semicolon after the from clause
+  const importMatches = code.match(/^import\s+[\s\S]*?from\s+["'][^"']+["'];?/gm) || [];
 
-  // Get all imports, filtering out type imports from "../types"
-  const imports: string[] = [];
-
-  // Handle multi-line imports first
-  const multiLineMatches = code.match(/import\s+\{[^}]*\}\s+from\s+["'][^"']+["'];?/g) || [];
-  for (const match of multiLineMatches) {
-    if (!match.includes('from "../types"') && !match.includes("from '../types'")) {
-      imports.push(match.replace(/\s+/g, ' ').replace(/{ /g, '{\n  ').replace(/ }/g, '\n}').replace(/, /g, ',\n  '));
-    }
-  }
-
-  // Simpler approach: get everything before "export const" and filter
-  const beforeExport = code.split(/export const \w+Demo/)[0];
-  const importSection = beforeExport
-    .split('\n')
-    .filter(line => line.trim().length > 0)
-    .filter(line => !line.includes('from "../types"') && !line.includes("from '../types'"))
+  // Filter out type imports from "../types"
+  const imports = importMatches
+    .filter(imp => !imp.includes('from "../types"') && !imp.includes("from '../types'"))
     .join('\n');
 
-  // Match the render function content
-  const renderMatch = code.match(
-    /render:\s*\(\)\s*=>\s*(?:\(\s*)?([\s\S]*?)(?:\s*\))?,?\s*};?\s*$/
-  );
+  // Extract content between render: () => ( and the closing ), at the end
+  const renderMatch = code.match(/render:\s*\(\)\s*=>\s*\(\s*([\s\S]*)\s*\),?\s*\};?\s*$/);
 
   let renderContent = "";
   if (renderMatch) {
-    renderContent = renderMatch[1].trim();
-    // Remove trailing parenthesis if present
-    if (renderContent.endsWith("),")) {
-      renderContent = renderContent.slice(0, -2);
+    renderContent = renderMatch[1];
+
+    // Dedent: find minimum indentation of non-empty lines and remove it
+    const lines = renderContent.split('\n');
+    const nonEmptyLines = lines.filter(l => l.trim().length > 0);
+
+    if (nonEmptyLines.length > 0) {
+      const minIndent = Math.min(
+        ...nonEmptyLines.map(l => {
+          const match = l.match(/^(\s*)/);
+          return match ? match[1].length : 0;
+        })
+      );
+
+      renderContent = lines
+        .map(l => (l.length >= minIndent ? l.slice(minIndent) : l))
+        .join('\n')
+        .trim();
     }
   }
 
-  // Combine imports and render content
-  if (importSection && renderContent) {
-    return `${importSection}\n\n${renderContent}`;
+  if (imports && renderContent) {
+    return `${imports}\n\n${renderContent}`;
   }
   return renderContent || code;
 }
@@ -55,6 +52,9 @@ export default async function Home() {
     path.join(process.cwd(), "app/globals.css"),
     "utf-8"
   );
+
+  // Highlight the globals.css content
+  const globalsCssHighlighted = await highlightCode(globalsCss, "css");
 
   // Pre-read and highlight all demo sources
   const demoSources: Record<string, string> = {};
@@ -75,5 +75,11 @@ export default async function Home() {
     })
   );
 
-  return <HomeContent globalsCss={globalsCss} demoSources={demoSources} />;
+  return (
+    <HomeContent
+      globalsCss={globalsCss}
+      globalsCssHighlighted={globalsCssHighlighted}
+      demoSources={demoSources}
+    />
+  );
 }

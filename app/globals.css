@@ -213,3 +213,18 @@
     @apply bg-background text-foreground font-sans;
   }
 }
+
+/* Shiki dual theme support */
+.shiki,
+.shiki code {
+  background-color: transparent !important;
+}
+
+.shiki span {
+  background-color: transparent !important;
+}
+
+/* Dark mode: switch to dark theme colors */
+.dark .shiki span {
+  color: var(--shiki-dark) !important;
+}
